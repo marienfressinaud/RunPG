@@ -1,0 +1,18 @@
+RunPG
+=====
+RunPG est un jeu type RPG utilisant la géolocalisation pour faire évoluer notre personnage.
+Les quêtes consistent à parcourir un certain nombre de kilomètres en un minimum de temps. L'enregistrement se fait grâce à la version web de RunPG et utilise les possibilités de géolocalisation du téléphone.
+
+Contraintes
+===========
+Il s'agit d'un projet web pour l'Ensimag, un certain nombre de contraintes sont imposées :
+- Utilisation du framework Java Play
+- Gestion de droits avec différents niveaux d'utilisateurs
+- Gestion d'un flux RSS
+- Utilisation d'un webservice
+- Une partie du site en GWT
+- Version mobile de l'application
+
+État du projet
+==============
+Non commencé
