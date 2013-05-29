@@ -43,3 +43,8 @@ body {
 		font-size: 120%;
 		font-weight: bold;
 	}
+
+form {
+	max-width: 700px;
+	margin: auto;
+}

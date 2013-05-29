@@ -1,0 +1,37 @@
+@(form: Form[Application.Login])
+
+@main("RunPG") {
+	@helper.form(routes.Application.authenticate) {
+	<legend>Connexion</legend>
+
+	<div class="form-group">
+		<label class="group-name" for="pseudo">Pseudo</label>
+		<div class="group-controls">
+			<input type="text" id="pseudo" name="pseudo" value="@form("pseudo").value">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="group-name" for="password">Mot de passe</label>
+		<div class="group-controls">
+			<input type="password" id="password" name="password">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="group-name"></label>
+		<div class="group-controls">
+			<label class="checkbox" for="new_account">
+				<input type="checkbox" name="new_account" id="new_account" value="yes" />
+				Ceci est un nouveau compte
+			</label>
+		</div>
+	</div>
+
+	<div class="form-group form-actions">
+		<div class="group-controls">
+			<button class="btn btn-important" type="submit">Connexion</button>
+		</div>
+	</div>
+		
+	</p>
+	}
+}
