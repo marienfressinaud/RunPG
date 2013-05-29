@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 import play.test.WithApplication;
 import static play.test.Helpers.*;
 
+// TODO utiliser fichier Yaml pour automatiser la création de la base de tests
 public class ModelsTest extends WithApplication {
 	@Before
 	public void setUp() {
@@ -17,27 +18,24 @@ public class ModelsTest extends WithApplication {
 	
 	@Test
 	public void createAndRetrieveJoueur() {
-		new Joueur("Bob", "mysecretpassword", 42, 0, 0).save();
-		Joueur bob = Joueur.find.where().eq("pseudo", "Bob").findUnique();
-		assertNotNull(bob);
-		assertEquals("Bob", bob.pseudo);
+		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
+		assertNotNull(Julien);
+		assertEquals("Julien", Julien.pseudo);
 	}
 
 	@Test
 	public void tryAuthenticateJoueur() {
-		new Joueur("Bob", "mysecretpassword", 42, 0, 0).save();
-		
-		assertNotNull(Joueur.login("Bob", "mysecretpassword"));
-		assertNull(Joueur.login("Bob", "mybadpassword"));
-		assertNull(Joueur.login("Bobby", "mysecretpassword"));
+		assertNotNull(Joueur.login("Julien", "jujudu38"));
+		assertNull(Joueur.login("Julien", "mybadpassword"));
+		assertNull(Joueur.login("MauvaisJulien", "mysecretpassword"));
 	}
 	
 	@Test
 	public void IncreaseScoreJoueur() {
-		Joueur bob = new Joueur("Bob", "mysecretpassword", 500, 0, 0);
-		bob.augmenterScore(100);
+		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
+		Julien.augmenterScore(100);
 		
-		assertEquals(600, bob.score.intValue());
+		assertEquals(110, Julien.score.intValue());
 	}
 
 	@Test
@@ -115,15 +113,14 @@ public class ModelsTest extends WithApplication {
 		);
 		quete = Quete.create(quete, null, 1);
 
-		new Joueur("Bob", "mysecretpassword", 42, 0, 0).save();
-		Joueur bob = Joueur.find.where().eq("pseudo", "Bob").findUnique();
+		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
 		
-		new EtatQuete(9, 9, 60, "2013-05-29.gpx", Etat.TERMINEE, bob, quete).save();
+		new EtatQuete(9, 9, 60, "2013-05-29.gpx", Etat.TERMINEE, Julien, quete).save();
 		EtatQuete etat = EtatQuete.find.where().eq("id", 1).findUnique();
 		
 		assertNotNull(etat);
 		assertEquals(9, (int)etat.distance);
 		assertEquals(Etat.TERMINEE, etat.etat);
-		assertEquals("Bob", etat.joueur.pseudo);
+		assertEquals("Julien", etat.joueur.pseudo);
 	}
 }

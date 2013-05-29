@@ -1,10 +1,15 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.*;
 import play.db.ebean.*;
 
 @Entity
 public class Joueur extends Model {
+	public static Finder<String, Joueur> find = new Finder<String, Joueur>(
+		String.class, Joueur.class
+	);
 
 	@Id
 	public String pseudo;
@@ -24,10 +29,6 @@ public class Joueur extends Model {
 	public Joueur(String pseudo, String password) {
 		this(pseudo, password, 0, 0, 0);
 	}
-
-	public static Finder<String, Joueur> find = new Finder<String, Joueur>(
-		String.class, Joueur.class
-	);
 	
 	public static Joueur login(String pseudo, String password) {
 		return find.where().eq("pseudo", pseudo)
@@ -37,5 +38,9 @@ public class Joueur extends Model {
 	
 	public void augmenterScore(Integer add) {
 		this.score += add;
+	}
+
+	public static List<Joueur> listByScore() {
+		return find.where().orderBy("score desc").findList();
 	}
 }

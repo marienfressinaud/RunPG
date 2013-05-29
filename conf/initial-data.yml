@@ -1,0 +1,32 @@
+
+# Joueurs
+
+joueurs:
+
+    - !!models.Joueur
+        pseudo:      Bob
+        password:    bobsecret
+        score:       42
+        xpVitesse:   120
+        xpEndurance: 100
+
+    - !!models.Joueur
+        pseudo:      Julien
+        password:    jujudu38
+        score:       10
+        xpVitesse:   10
+        xpEndurance: 50
+
+    - !!models.Joueur
+        pseudo:      Pat
+        password:    patou
+        score:       500
+        xpVitesse:   1560
+        xpEndurance: 100
+
+    - !!models.Joueur
+        pseudo:      Marien
+        password:    Bl4Bl4S3cr3t
+        score:       420
+        xpVitesse:   300
+        xpEndurance: 540

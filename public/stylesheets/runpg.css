@@ -1,0 +1,45 @@
+
+body {
+	background: #eee;
+}
+
+.mainbar .item:first-child,
+.mainbar .item:last-child {
+	width: 250px;
+}
+.horizontal-list.navbar .title h1 a {
+	text-decoration: none;
+}
+
+.texte-accueil {
+	max-width: 700px;
+	margin: 50px auto;
+	text-align: center;
+}
+	.texte-accueil .item {
+		padding: 20px;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 10px;
+	}
+	.texte-accueil .separator {
+		width: 50px;
+	}
+
+.top3 {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.media-list .media {
+	margin: 0;
+	text-align: center;
+	list-style: none;
+}
+	.media-list .media .avatar {
+		margin: 5px 0;
+	}
+	.media-list .media .pseudo {
+		font-size: 120%;
+		font-weight: bold;
+	}

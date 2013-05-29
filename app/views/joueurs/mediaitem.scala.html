@@ -1,0 +1,9 @@
+@(joueur: Joueur)
+
+<li class="item">
+	<ul class="media">
+		<li class="avatar"><img alt="" src="@routes.Assets.at("media/avatars/" + joueur.pseudo + ".png")" /></li>
+		<li class="pseudo">@joueur.pseudo</li>
+		<li class="score">@joueur.score points</li>
+	</ul>
+</li>

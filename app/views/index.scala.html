@@ -1,7 +1,31 @@
-@(message: String)
+@(joueurs: List[Joueur])
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message, style = "Java")
-    
+@main("RunPG") {
+
+	@if(joueurs.size() > 0) {
+	<div class="top3">
+		<h1>Top 3 des joueurs</h1>
+
+		<a href="#">Voir le classement complet</a>
+
+		<ul class="horizontal-list media-list">
+		@joueurs.subList(0, 3).map { joueur =>
+			@views.html.joueurs.mediaitem(joueur)
+		}
+		</ul>
+	</div>
+	}
+
+	<ul class="horizontal-list texte-accueil">
+		<li class="item">
+		RunPG est le premier jeu de rôle utilisant vos déplacements de la vie de tous les jours pour faire progresser votre personnage.<br />
+		Prenez votre téléphone en courant, enregistrez votre parcours et progressez !
+		</li>
+
+		<li class="separator"></li>
+
+		<li class="item">
+		N'attendez plus, <a href="#">inscrivez-vous</a>, c'est gratuit et ça le restera !
+		</li>
+	</ul>
 }
