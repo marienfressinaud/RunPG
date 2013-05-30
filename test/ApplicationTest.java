@@ -1,3 +1,5 @@
+import models.Joueur;
+
 import org.junit.*;
 
 import play.mvc.*;
@@ -13,19 +15,26 @@ import static org.fest.assertions.Assertions.*;
 *
 */
 public class ApplicationTest {
+	@Before
+	public void setUp() {
+		start(fakeApplication(inMemoryDatabase()));
+	}
 
-    @Test 
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
-    }
+	@Test
+	public void simpleCheck() {
+		int a = 1 + 1;
+		assertThat(a).isEqualTo(2);
+	}
     
-    @Test
-    public void renderTemplate() {
-        /*Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");*/
-    }
+	@Test
+	public void renderTemplate() {
+		Content html = views.html.index.render(
+			Joueur.find.byId("Bob"),
+			Joueur.listByScore()
+		);
+		assertThat(contentType(html)).isEqualTo("text/html");
+		assertThat(contentAsString(html)).contains("Top 3 des joueurs");
+	}
   
    
 }

@@ -5,6 +5,7 @@ import models.*;
 import java.util.*;
 
 public class Global extends GlobalSettings {
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onStart(Application app) {
 		// Check if the database is empty

@@ -3,26 +3,46 @@ body {
 	background: #eee;
 }
 
+.mainbar {
+	min-height: 30px;
+}
 .mainbar .item:first-child,
 .mainbar .item:last-child {
 	width: 250px;
 }
+.mainbar .item.menu {
+	width: 150px;
+	border-radius: 20px;
+	border: 1px solid transparent;
+}
+	.mainbar .item.menu:hover {
+		background: #333;
+		border: 1px solid #111;
+	}
+	.mainbar .item.menu a {
+		display: block;
+		height: 30px;
+		line-height: 30px;
+		text-decoration: none;
+	}
 .horizontal-list.navbar .title h1 a {
 	text-decoration: none;
 }
 
-.texte-accueil {
+.content {
 	max-width: 700px;
 	margin: 50px auto;
-	text-align: center;
 }
-	.texte-accueil .item {
+	.content .horizontal-list {
+		margin: 30px 0;
+	}
+	.content .texte .item {
 		padding: 20px;
 		background: #fff;
 		border: 1px solid #ddd;
 		border-radius: 10px;
 	}
-	.texte-accueil .separator {
+	.content .texte .separator {
 		width: 50px;
 	}
 
@@ -44,7 +64,20 @@ body {
 		font-weight: bold;
 	}
 
-form {
-	max-width: 700px;
-	margin: auto;
+table tr:nth-child(even) {
+	background: #fff;
 }
+table th {
+	padding: 3px 5px;
+	border-bottom: 1px solid #aaa;
+}
+table td {
+	padding: 0 5px;
+	border-bottom: 1px solid #ddd;
+}
+table .avatar {
+	text-align: center;
+}
+	table .avatar img {
+		max-width: 70px;
+	}

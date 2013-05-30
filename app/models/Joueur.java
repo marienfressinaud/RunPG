@@ -30,7 +30,7 @@ public class Joueur extends Model {
 		this(pseudo, password, 0, 0, 0);
 	}
 	
-	public static Joueur login(String pseudo, String password) {
+	public static Joueur authenticate(String pseudo, String password) {
 		return find.where().eq("pseudo", pseudo)
 		                   .eq("password", password)
 		                   .findUnique();
@@ -42,5 +42,16 @@ public class Joueur extends Model {
 
 	public static List<Joueur> listByScore() {
 		return find.where().orderBy("score desc").findList();
+	}
+	
+	public static Boolean exist(String pseudo) {
+		return find.where().eq("pseudo", pseudo).findUnique() != null;
+	}
+	
+	public static Joueur create(String pseudo, String password) {
+		Joueur j = new Joueur(pseudo, password);
+		j.save();
+		
+		return j;
 	}
 }

@@ -1,0 +1,26 @@
+@(joueur: Joueur, joueurs: List[Joueur])
+
+@main(joueur, "Classement - RunPG") {
+<div class="content classement">
+	<h1>Classement des joueurs</h1>
+
+	<a href="@routes.Application.index">← Retour à l'accueil</a>
+
+	@if(joueurs.size() > 0) {
+	<table class="media-list">
+		<tr>
+			<th>&nbsp;</th>
+			<th>Pseudo</th>
+			<th>Score</th>
+			<th>XP vitesse</th>
+			<th>XP endurance</th>
+		</tr>
+		@joueurs.map { joueur =>
+			@views.html.joueurs.tabitem(joueur)
+		}
+	</table>
+	} else {
+		Il n'y a pas de joueurs
+	}
+</div>
+}

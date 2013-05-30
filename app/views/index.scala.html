@@ -1,12 +1,18 @@
-@(joueurs: List[Joueur])
+@(joueur: Joueur, joueurs: List[Joueur])
 
-@main("RunPG") {
+@main(joueur, "RunPG") {
+<div class="content">
+	@if(flash.contains("success")) {
+	<p class="alert alert-success">@flash.get("success")</p>
+	}
 
 	@if(joueurs.size() > 0) {
 	<div class="top3">
 		<h1>Top 3 des joueurs</h1>
 
-		<a href="#">Voir le classement complet</a>
+		@if(joueur != null) {
+		<a href="@routes.Application.classement()">Voir le classement complet</a>
+		}
 
 		<ul class="horizontal-list media-list">
 		@joueurs.subList(0, 3).map { joueur =>
@@ -16,7 +22,7 @@
 	</div>
 	}
 
-	<ul class="horizontal-list texte-accueil">
+	<ul class="horizontal-list texte">
 		<li class="item">
 		RunPG est le premier jeu de rôle utilisant vos déplacements de la vie de tous les jours pour faire progresser votre personnage.<br />
 		Prenez votre téléphone en courant, enregistrez votre parcours et progressez !
@@ -25,7 +31,8 @@
 		<li class="separator"></li>
 
 		<li class="item">
-		N'attendez plus, <a href="#">inscrivez-vous</a>, c'est gratuit et ça le restera !
+		N'attendez plus, @if(joueur == null) {<a href="@routes.Application.login()">inscrivez-vous</a>} else { <a href="@routes.Jeu.profil()">partez à l'aventure</a> }, c'est gratuit et ça le restera !
 		</li>
 	</ul>
+</div>
 }

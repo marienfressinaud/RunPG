@@ -1,8 +1,16 @@
 @(form: Form[Application.Login])
 
-@main("RunPG") {
+@main(null, "Connexion - RunPG") {
+<div class="content">
 	@helper.form(routes.Application.authenticate) {
 	<legend>Connexion</legend>
+
+	@if(form.hasGlobalErrors) {
+	<p class="alert alert-error">@form.globalError.message</p>
+	}
+	@if(flash.contains("success")) {
+	<p class="alert alert-success">@flash.get("success")</p>
+	}
 
 	<div class="form-group">
 		<label class="group-name" for="pseudo">Pseudo</label>
@@ -19,8 +27,8 @@
 	<div class="form-group">
 		<label class="group-name"></label>
 		<div class="group-controls">
-			<label class="checkbox" for="new_account">
-				<input type="checkbox" name="new_account" id="new_account" value="yes" />
+			<label class="checkbox" for="newAccount">
+				<input type="checkbox" name="newAccount" id="newAccount" value="yes" @if(form("newAccount").value != null) { checked } />
 				Ceci est un nouveau compte
 			</label>
 		</div>
@@ -31,7 +39,6 @@
 			<button class="btn btn-important" type="submit">Connexion</button>
 		</div>
 	</div>
-		
-	</p>
 	}
+</div>
 }

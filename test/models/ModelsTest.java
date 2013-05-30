@@ -25,9 +25,9 @@ public class ModelsTest extends WithApplication {
 
 	@Test
 	public void tryAuthenticateJoueur() {
-		assertNotNull(Joueur.login("Julien", "jujudu38"));
-		assertNull(Joueur.login("Julien", "mybadpassword"));
-		assertNull(Joueur.login("MauvaisJulien", "mysecretpassword"));
+		assertNotNull(Joueur.authenticate("Julien", "jujudu38"));
+		assertNull(Joueur.authenticate("Julien", "mybadpassword"));
+		assertNull(Joueur.authenticate("MauvaisJulien", "mysecretpassword"));
 	}
 	
 	@Test

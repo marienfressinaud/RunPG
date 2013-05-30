@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(joueur: Joueur, title: String)(content: Html)
 
 <!DOCTYPE html>
 <html>
@@ -12,9 +12,16 @@
 	</head>
 	<body>
 		<ul class="horizontal-list navbar mainbar">
-			<li class="item title"><h1><a href="@routes.Application.index">@title</a></h1></li>
+			<li class="item title"><h1><a href="@routes.Application.index">RunPG</a></h1></li>
+			@if(joueur == null) {
 			<li class="item">&nbsp;</li>
 			<li class="item"><a href="@routes.Application.login()">S'inscrire / se connecter</a></li>
+			} else {
+			<li class="item menu"><a href="@routes.Jeu.profil()">Profil de @joueur.pseudo</a></li>
+			<li class="item menu"><a href="@routes.Jeu.quetes()">Quêtes</a></li>
+			<li class="item">&nbsp;</li>
+			<li class="item"><a href="@routes.Application.logout()">Se déconnecter</a></li>
+			}
 		</ul>
 
 		@content
