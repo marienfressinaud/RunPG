@@ -15,6 +15,13 @@ body {
 	border-radius: 20px;
 	border: 1px solid transparent;
 }
+	.mainbar .item.active {
+		font-weight: bold;
+	}
+	.mainbar .item.menu.active {
+		background: #333;
+		border: 1px solid #111;
+	}
 	.mainbar .item.menu:hover {
 		background: #333;
 		border: 1px solid #111;
@@ -46,20 +53,65 @@ body {
 		width: 50px;
 	}
 
+.aside {
+	display: table-cell;
+	height: 100%;
+	width: 250px;
+	vertical-align: top;
+}
+
+.game-template {
+	display: table;
+	height: 90%;
+	width: 100%;
+}
+	.aside-profil {
+		vertical-align: middle;
+		background: #fff;
+		border-right: 1px solid #ddd;
+	}
+	.experience {
+		padding: 0 30px;
+		margin: 0 0 50px;
+		text-align: center;
+	}
+		.experience .item {
+			display: inline-block;
+			padding: 50px;
+			margin: 0 50px;
+		}
+			.experience .item .points {
+				display: block;
+				font-size: 400%;
+				font-weight: bold;
+			}
+	.inventaire {
+		padding: 0 30px;
+	}
+
+	.experience h1,
+	.inventaire h1 {
+		margin: 20px 0 5px;
+		padding: 5px 0;
+		border-bottom: 1px solid #ddd;
+		font-size: 170%;
+		text-align: left;
+	}
+
 .top3 {
 	max-width: 700px;
 	margin: 0 auto;
 }
 
-.media-list .media {
+.media-list {
 	margin: 0;
 	text-align: center;
 	list-style: none;
 }
-	.media-list .media .avatar {
+	.media-list .avatar {
 		margin: 5px 0;
 	}
-	.media-list .media .pseudo {
+	.media-list .pseudo {
 		font-size: 120%;
 		font-weight: bold;
 	}
@@ -75,9 +127,10 @@ table td {
 	padding: 0 5px;
 	border-bottom: 1px solid #ddd;
 }
-table .avatar {
+table .small {
+	width: 70px;
 	text-align: center;
 }
-	table .avatar img {
+	table .small img {
 		max-width: 70px;
 	}

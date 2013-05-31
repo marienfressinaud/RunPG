@@ -1,8 +1,10 @@
 package models;
 
+import java.io.File;
 import java.util.List;
 
 import javax.persistence.*;
+
 import play.db.ebean.*;
 
 @Entity
@@ -38,6 +40,19 @@ public class Joueur extends Model {
 	
 	public void augmenterScore(Integer add) {
 		this.score += add;
+	}
+	
+	public int getScore() {
+		return this.score + (this.xpVitesse + this.xpEndurance) / 10;
+	}
+	
+	public String getAvatar() {
+		File file = new File("public/media/avatars/" + this.pseudo + ".png");
+		if(file.exists()) {
+			return "media/avatars/" + this.pseudo + ".png";
+		} else {
+			return "media/avatars/default.png";
+		}
 	}
 
 	public static List<Joueur> listByScore() {

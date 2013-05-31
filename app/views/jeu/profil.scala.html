@@ -1,5 +1,39 @@
 @(joueur: Joueur)
 
-@main(joueur, "Profil - RunPG") {
-	
+@main(joueur, "Profil - RunPG", "profil") {
+<div class="game-template">
+	<div class="aside aside-profil">
+		@views.html.joueurs.mediaitem(joueur)
+	</div>
+
+	<div class="experience">
+		<h1>Expérience <i class="icon i_help" title="Gagnez de l'expérience et réduisez vos objectifs de quêtes !">&nbsp;</i></h1>
+
+		<div class="item vitesse">
+			<span class="points">@joueur.xpVitesse</span>
+			<span class="libelle">XP vitesse</span>
+		</div>
+		<div class="item endurance">
+			<span class="points">@joueur.xpEndurance</span>
+			<span class="libelle">XP endurance</span>
+		</div>
+	</div>
+
+	<div class="inventaire">
+		<h1>Inventaire</h1>
+
+		<p class="alert alert-warn">Votre inventaire est vide (en fait il n'a pas été implémenté)</p>
+		<!--
+		<table>
+			<tr>
+				<th class="small">&nbsp;</th>
+				<th>Objet</th>
+				<th>Informations</th>
+				<th>Quantité</th>
+				<th>Actions</th>
+			</tr>
+		</table>
+		-->
+	</div>
+</div>
 }

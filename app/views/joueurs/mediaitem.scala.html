@@ -1,9 +1,8 @@
 @(joueur: Joueur)
 
-<li class="item">
-	<ul class="media">
-		<li class="avatar"><img alt="" src="@routes.Assets.at("media/avatars/" + joueur.pseudo + ".png")" /></li>
-		<li class="pseudo">@joueur.pseudo</li>
-		<li class="score">@joueur.score points</li>
-	</ul>
-</li>
+<ul class="media-list">
+	<li class="avatar"><img alt="" src="@routes.Assets.at(joueur.getAvatar())" /></li>
+	<li class="pseudo">@joueur.pseudo</li>
+	<li class="score">@joueur.getScore() points</li>
+	<li class="progression">0% du jeu terminé</li>
+</ul>

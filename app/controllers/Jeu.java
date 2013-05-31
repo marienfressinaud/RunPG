@@ -17,7 +17,9 @@ public class Jeu extends Controller {
 	}
 	
 	public static Result quetes() {
-		return TODO;
+		return ok(quetes.render(
+			Joueur.find.byId(request().username())
+		));
 	}
 
 }

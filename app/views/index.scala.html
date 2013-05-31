@@ -14,9 +14,9 @@
 		<a href="@routes.Application.classement()">Voir le classement complet</a>
 		}
 
-		<ul class="horizontal-list media-list">
-		@joueurs.subList(0, 3).map { joueur =>
-			@views.html.joueurs.mediaitem(joueur)
+		<ul class="horizontal-list">
+		@joueurs.subList(0, 3).map { j =>
+			<li class="item">@views.html.joueurs.mediaitem(j)</li>
 		}
 		</ul>
 	</div>
