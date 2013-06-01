@@ -14,9 +14,10 @@
 			<th>Score</th>
 			<th>XP vitesse</th>
 			<th>XP endurance</th>
+			<th>Progression</th>
 		</tr>
-		@joueurs.map { joueur =>
-			@views.html.joueurs.tabitem(joueur)
+		@for(j <- joueurs) {
+			@views.html.joueurs.tabitem(j)
 		}
 	</table>
 	} else {

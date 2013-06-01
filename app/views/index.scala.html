@@ -15,7 +15,7 @@
 		}
 
 		<ul class="horizontal-list">
-		@joueurs.subList(0, 3).map { j =>
+		@for(j <- joueurs.subList(0, 3)) {
 			<li class="item">@views.html.joueurs.mediaitem(j)</li>
 		}
 		</ul>

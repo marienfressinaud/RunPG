@@ -46,6 +46,21 @@ public class Joueur extends Model {
 		return this.score + (this.xpVitesse + this.xpEndurance) / 10;
 	}
 	
+	public int getProgression() {
+		int totalQuetes = Quete.find.findList().size();
+		int totalTerminee = 0;
+		
+		List<Seance> listeSeances = Seance.find.where().eq("joueur.pseudo", pseudo).findList();
+		for(Seance s : listeSeances) {
+			if(s.etat == Seance.Etat.TERMINEE ||
+			   s.etat == Seance.Etat.VALIDEE) {
+				totalTerminee++;
+			}
+		}
+		
+		return totalTerminee * 100 / totalQuetes;
+	}
+	
 	public String getAvatar() {
 		File file = new File("public/media/avatars/" + this.pseudo + ".png");
 		if(file.exists()) {
@@ -66,6 +81,8 @@ public class Joueur extends Model {
 	public static Joueur create(String pseudo, String password) {
 		Joueur j = new Joueur(pseudo, password);
 		j.save();
+		
+		Seance.create(j, Quete.getQueteInitiale());
 		
 		return j;
 	}

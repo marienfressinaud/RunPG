@@ -1,6 +1,10 @@
 package controllers;
 
+import java.util.List;
+
+import models.Seance;
 import models.Joueur;
+import models.Quete;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -16,10 +20,33 @@ public class Jeu extends Controller {
 		));
 	}
 	
-	public static Result quetes() {
+	public static Result quetes(Integer id) {
+		List<Quete> listeQuetes = Quete.listByJoueur(request().username());
+		Quete queteActuelle = null;
+		
+		if(id > 0) {
+			queteActuelle = Quete.find.byId(id);
+		}
+		
+		if(queteActuelle == null) {
+			for(Quete quete : listeQuetes) {
+				Seance seance = quete.getSeance(request().username());
+				if(seance.etat.equals(Seance.Etat.NOUVELLE) ||
+				   seance.etat.equals(Seance.Etat.EN_COURS) ||
+				   seance.etat.equals(Seance.Etat.TERMINEE)) {
+					queteActuelle = Quete.find.byId(seance.quete.id);
+				}
+			}
+		}
+		
 		return ok(quetes.render(
-			Joueur.find.byId(request().username())
+			Joueur.find.byId(request().username()),
+			listeQuetes,
+			queteActuelle
 		));
 	}
 
+	public static Result validerQuete() {
+		return TODO;
+	}
 }

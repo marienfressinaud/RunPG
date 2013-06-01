@@ -1,5 +1,54 @@
-@(joueur: Joueur)
+@(joueur: Joueur, quetes: List[Quete], quete: Quete)
 
 @main(joueur, "Quêtes - RunPG", "quetes") {
-	
+<div class="game-template">
+	@views.html.quetes.list(quetes, quete)
+
+	<div class="quete">
+		<h1>@quete.titre</h1>
+
+		<p class="alert alert-warn">
+		@quete.sequenceDeb
+		</p>
+
+		<div class="objectifs">
+		@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.TERMINEE ||
+		    quete.getSeance(joueur.pseudo).etat == Seance.Etat.VALIDEE) {
+			<h1>Réalisation</h1>
+			<ul>
+				<li>Distance : <strong>@quete.getSeance(joueur.pseudo).distance km</strong></li>
+				<li>Durée : <strong>@quete.getSeance(joueur.pseudo).duree minutes</strong></li>
+			</ul>
+
+			<p class="alert alert-success">
+			@quete.sequenceFin
+			</p>
+		} else {
+			<h1>Objectifs minimums</h1>
+			<ul>
+				<li>Objectifs de distance : <strong>@quete.objDistance km</strong></li>
+				<li>Objectifs de durée : <strong>@quete.objDuree minutes</strong></li>
+			</ul>
+		}
+		</div>
+
+		@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.NOUVELLE ||
+		    quete.getSeance(joueur.pseudo).etat == Seance.Etat.TERMINEE) {
+		<form method="post" action="@routes.Jeu.validerQuete">
+			<input type="hidden" name="idQuete" value="@quete.id" />
+
+			@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.TERMINEE) {
+			<button class="btn btn-important" name="action" value="next" type="submit">Passer à la quête suivante</button>
+			}
+			@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.NOUVELLE) {
+			<button class="btn btn-important" name="action" value="accept" type="submit">Commencer cette quête</button>
+			}
+		</form>
+		}
+
+		@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.EN_COURS) {
+		<p class="alert">Vous avez débuté cette quête <i class="icon i_help" title="Veuillez vous connecter avec votre téléphone pour l'accomplir"></i></p>
+		}
+	</div>
+</div>
 }

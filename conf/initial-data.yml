@@ -1,6 +1,4 @@
 
-# Joueurs
-
 joueurs:
 
     - !!models.Joueur
@@ -30,3 +28,155 @@ joueurs:
         score:       420
         xpVitesse:   300
         xpEndurance: 540
+
+chapitres:
+
+    - !!models.Chapitre
+        numero:      1
+        nom:         Enfance
+
+    - !!models.Chapitre
+        numero:      2
+        nom:         Entraînement
+
+    - !!models.Chapitre
+        numero:      3
+        nom:         La mission
+
+    - !!models.Chapitre
+        numero:      4
+        nom:         Épilogue
+
+quetes:
+
+    - !!models.Quete
+        id:          4
+        titre:       Un bruit court
+        sequenceDeb: La guerre se prépare, mais votre village n'est pas encore prêt. Il vous faut vous rendre à la ville de Marathon pour demander des renforts. Le temps nous est compté, vite !
+        sequenceFin: Arrivé essouflé, un homme vous ouvre la porte. Vous lui expliquez la situation et il vous prévient que vous vous êtes trompé de ville. Tout est fichu...
+        objDistance: 42
+        objDuree:    180
+        chapitre:
+            !!models.Chapitre
+                numero : 4
+
+    - !!models.Quete
+        id:          3
+        titre:       Transmettre la bonne parole
+        sequenceDeb: On vous a chargé du rôle de grand messager. Vous avez pour mission de parcourir les rues de la ville pour transmettre les informations du maire.
+        sequenceFin: La ville est au courant de tout ce qui s'y passe. La vie y est bien meilleure maintenant.
+        objDistance: 12
+        objDuree:    60
+        suivante:
+            !!models.Quete
+                id : 4
+        chapitre:
+            !!models.Chapitre
+                numero : 3
+
+    - !!models.Quete
+        id:          2
+        titre:       Le maniement de la fuite
+        sequenceDeb: On vous a appris depuis tout petit que rien ne sert de combattre, il vaut mieux courir. Considérée comme lâche, vous préférez la considérer comme de la ruse. Mais avant cela, vous devez vous entraîner.
+        sequenceFin: Bien. Vous maniez la fuite à la perfection.
+        objDistance: 6
+        objDuree:    45
+        suivante:
+            !!models.Quete
+                id : 3
+        chapitre:
+            !!models.Chapitre
+                numero : 2
+
+    - !!models.Quete
+        id:          1
+        titre:       Les poules
+        sequenceDeb: Vous avez laissé s'échapper les poules ! Rattrapez-les vite !
+        sequenceFin: Bravo, le fermier est fier de vous
+        objDistance: 2
+        objDuree:    20
+        suivante:
+            !!models.Quete
+                id : 2
+        chapitre:
+            !!models.Chapitre
+                numero : 1
+
+seances:
+
+    - !!models.Seance
+        distance:       0
+        duree:          0
+        etat:           NOUVELLE
+        joueur:
+            !!models.Joueur
+                pseudo: Bob
+        quete:
+            !!models.Quete
+                id : 1
+
+    - !!models.Seance
+        distance:       0
+        duree:          0
+        etat:           EN_COURS
+        joueur:
+            !!models.Joueur
+                pseudo: Julien
+        quete:
+            !!models.Quete
+                id : 1
+
+    - !!models.Seance
+        distance:       4
+        duree:          30
+        etat:           VALIDEE
+        joueur:
+            !!models.Joueur
+                pseudo: Marien
+        quete:
+            !!models.Quete
+                id : 1
+
+    - !!models.Seance
+        distance:       2
+        duree:          20
+        etat:           VALIDEE
+        joueur:
+            !!models.Joueur
+                pseudo: Pat
+        quete:
+            !!models.Quete
+                id : 1
+
+    - !!models.Seance
+        distance:       10
+        duree:          60
+        etat:           TERMINEE
+        joueur:
+            !!models.Joueur
+                pseudo: Marien
+        quete:
+            !!models.Quete
+                id : 2
+
+    - !!models.Seance
+        distance:       10
+        duree:          60
+        etat:           VALIDEE
+        joueur:
+            !!models.Joueur
+                pseudo: Pat
+        quete:
+            !!models.Quete
+                id : 2
+
+    - !!models.Seance
+        distance:       0
+        duree:          0
+        etat:           EN_COURS
+        joueur:
+            !!models.Joueur
+                pseudo: Pat
+        quete:
+            !!models.Quete
+                id : 3

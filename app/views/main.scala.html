@@ -21,7 +21,7 @@
 				<a href="@routes.Jeu.profil()">Profil</a>
 			</li>
 			<li class="item menu @("active".when(nav == "quetes"))">
-				<a href="@routes.Jeu.quetes()">Quêtes</a>
+				<a href="@routes.Jeu.quetes(0)">Quêtes</a>
 			</li>
 			<li class="item">&nbsp;</li>
 			<li class="item">@joueur.pseudo (<a href="@routes.Application.logout()">se déconnecter</a>)</li>

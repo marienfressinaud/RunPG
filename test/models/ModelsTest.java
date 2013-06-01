@@ -2,7 +2,7 @@ package models;
 
 import java.util.List;
 
-import models.EtatQuete.Etat;
+import models.Seance.Etat;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -115,8 +115,8 @@ public class ModelsTest extends WithApplication {
 
 		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
 		
-		new EtatQuete(9, 9, 60, "2013-05-29.gpx", Etat.TERMINEE, Julien, quete).save();
-		EtatQuete etat = EtatQuete.find.where().eq("id", 1).findUnique();
+		new Seance(9, 9, 60, "2013-05-29.gpx", Etat.TERMINEE, Julien, quete).save();
+		Seance etat = Seance.find.where().eq("id", 1).findUnique();
 		
 		assertNotNull(etat);
 		assertEquals(9, (int)etat.distance);

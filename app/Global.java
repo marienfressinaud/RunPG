@@ -12,8 +12,10 @@ public class Global extends GlobalSettings {
 		if (Joueur.find.findRowCount() == 0) {
 			Map<String,List<Object>> all = (Map<String,List<Object>>)Yaml.load("initial-data.yml");
 
-			// Insert users first
 			Ebean.save(all.get("joueurs"));
+			Ebean.save(all.get("chapitres"));
+			Ebean.save(all.get("quetes"));
+			Ebean.save(all.get("seances"));
 		}
 	}
 }

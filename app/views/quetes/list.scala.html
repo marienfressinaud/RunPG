@@ -1,0 +1,11 @@
+@(quetes: List[Quete], quete: Quete)
+
+<ul class="nav nav-list aside">
+	@for(q <- quetes) {
+	<li class="nav-header">@q.chapitre.nom</li>
+	<li class="item @("active".when(q.id == quete.id))">
+		<a href="@routes.Jeu.quetes(q.id)">@q.titre</a>
+	</li>
+	}
+</ul>
+

@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -36,6 +37,10 @@ public class Quete extends Model {
 		this.objDuree = objDuree;
 	}
 	
+	public Seance getSeance(String pseudo) {
+		return Seance.find.where().eq("joueur.pseudo", pseudo).eq("quete.id", this.id).findUnique();
+	}
+	
 	public static Quete create(Quete quete, Integer suivante, Integer numChapitre) {
 		if(suivante != null) {
 			quete.suivante = Quete.find.ref(suivante);
@@ -50,5 +55,20 @@ public class Quete extends Model {
 
 	public static List<Quete> findByChapitre(Integer numero) {
 		return find.where().eq("chapitre.numero", numero).findList();
+	}
+
+	public static List<Quete> listByJoueur(String pseudo) {
+		List<Seance> seances = Seance.find.where().eq("joueur.pseudo", pseudo).findList();
+		
+		List<Quete> quetes = new ArrayList<Quete>();
+		for(Seance s : seances) {
+			quetes.add(find.byId(s.quete.id));
+		}
+		
+		return quetes;
+	}
+	
+	public static Quete getQueteInitiale() {
+		return find.where().eq("id", 1).findUnique();
 	}
 }
