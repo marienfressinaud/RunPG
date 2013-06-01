@@ -121,6 +121,7 @@ body {
 		z-index: 1000;
 		background: rgba(255, 255, 255, 0.7);
 		line-height: 50px;
+		text-align: center;
 	}
 	.horizontal-list.compteurs {
 		top: 42px;
@@ -137,11 +138,13 @@ body {
 			padding: 0;
 			margin: 0;
 			vertical-align: middle;
-			text-align: center;
 		}
-			.horizontal-list.compteurs .item span {
+			.horizontal-list.compteurs .item span:first-child {
 				font-weight: bold;
 				font-size: 120%;
+			}
+			.horizontal-list.compteurs .item span:first-child.ok {
+				color: #484;
 			}
 
 .top3 {

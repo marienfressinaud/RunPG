@@ -1,20 +1,20 @@
 @(joueur: Joueur, quete: Quete)
 
 @main(joueur, "Séance - RunPG", "seance") {
-<div class="seance-template">
+<div class="seance-template" id="quete" @if(quete != null) {data-idQuete="@quete.id"}>
 	<ul class="horizontal-list compteurs">
 		<li class="item">
-		<span class="distance">0 km</span>@if(quete != null) { (sur @quete.getObjDistance(joueur))}
+		<span id="distance">0 km</span>@if(quete != null) { (sur <span id="objDistance">@quete.getObjDistance(joueur)</span>)}
 		</li><!--
 		--><li class="item">
-		<span class="duree">0 mn</span>@if(quete != null) { (sur @quete.getObjDuree(joueur)) }
+		<span id="duree">0 mn</span>@if(quete != null) { (sur <span id="objDuree">@quete.getObjDuree(joueur)</span>) }
 		</li>
 	</ul>
 
 	<div id="mapquest" class="map"></div>
 
 	<ul class="horizontal-list controles">
-		<li class="item"><a class="btn" href="@routes.Jeu.quetes(0)">Annuler</a></li><!--
+		<li class="item" id="cancelQuest"><a class="btn" href="@routes.Jeu.quetes(0)">Annuler</a></li><!--
 		--><li class="item"><a class="btn btn-important" id="startQuest" data-state="stop" href="#">Commencer</a></li>
 	</ul>
 </div>

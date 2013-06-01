@@ -47,7 +47,7 @@
 		}
 
 		@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.EN_COURS) {
-		<p class="alert"><a href="@routes.Jeu.seance(quete.id)" title="Veuillez vous connecter avec votre téléphone pour l'accomplir">Accomplir cette quête <i class="icon i_link"></i></a></p>
+		<p class="alert"><a href="@routes.Jeu.seance(quete.id)" title="Veuillez vous connecter avec votre téléphone pour l'accomplir">Accomplir cette quête <i class="icon i_link"></i></a> (uniquement sur smartphone)</p>
 		}
 	</div>
 </div>

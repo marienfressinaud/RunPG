@@ -75,4 +75,10 @@ public class Jeu extends Controller {
 			queteActuelle
 		));
 	}
+
+	public static Result validerSeance() {
+		
+	
+		return TODO;
+	}
 }
