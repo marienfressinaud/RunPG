@@ -63,4 +63,16 @@ public class Jeu extends Controller {
 			routes.Jeu.quetes(0)
 		);
 	}
+
+	public static Result seance(Integer idQuete) {
+		Quete queteActuelle = null;
+		if(idQuete > 0) {
+			queteActuelle = Quete.find.byId(idQuete);
+		}
+	
+		return ok(seance.render(
+			Joueur.find.byId(request().username()),
+			queteActuelle
+		));
+	}
 }

@@ -91,7 +91,7 @@ quetes:
     - !!models.Quete
         id:          1
         titre:       Les poules
-        sequenceDeb: Vous avez laissé s'échapper les poules ! Rattrapez-les vite !
+        sequenceDeb: Vous avez laissé s'échapper les poules ! Rattrapez-les toutes !
         sequenceFin: Bravo, le fermier est fier de vous
         objDistance: 2
         objDuree:    20

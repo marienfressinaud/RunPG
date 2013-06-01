@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import models.*;
 import play.data.Form;
 import play.data.validation.Constraints.Required;
@@ -10,12 +13,18 @@ import views.html.*;
 
 public class Application extends Controller {
 	public static class Login {
+		private Pattern pseudoPattern = Pattern.compile("^[a-zA-Z0-9_-]{3,30}$");
+		
 		@Required
 		public String pseudo;
 		public String password;
 		public String newAccount;
 		
 		public String validate() {
+			Matcher m = pseudoPattern.matcher(pseudo);
+			if(!m.find()) {
+				return "Un pseudo ne peut contenir que des lettres, des chiffres, des tirets (-) ou des underscores (_). Il doit faire entre 3 et 30 caractères";
+			}
 			if (newAccount != null && Joueur.exist(pseudo)) {
 				return "Ce pseudo est déjà utilisé par un autre joueur";
 			}
