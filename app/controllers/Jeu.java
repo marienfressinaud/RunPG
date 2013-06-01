@@ -5,6 +5,8 @@ import java.util.List;
 import models.Seance;
 import models.Joueur;
 import models.Quete;
+import play.data.DynamicForm;
+import static play.data.Form.*;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -47,6 +49,18 @@ public class Jeu extends Controller {
 	}
 
 	public static Result validerQuete() {
-		return TODO;
+		DynamicForm requestData = form().bindFromRequest();
+		Integer idQuete = Integer.parseInt(requestData.get("idQuete"));
+		String action = requestData.get("action");
+		
+		if(action.equals("next")) {
+			Seance.valider(idQuete, request().username());
+		} else if(action.equals("accept")) {
+			Seance.accepter(idQuete, request().username());
+		}
+		
+		return redirect(
+			routes.Jeu.quetes(0)
+		);
 	}
 }

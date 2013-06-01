@@ -38,4 +38,26 @@ public class Seance extends Model {
 	public static void create(Joueur j, Quete q) {
 		new Seance(0, 0, Etat.NOUVELLE, j, q).save();
 	}
+
+	public static void accepter(Integer idQuete, String pseudo) {
+		Seance s = find.where().eq("joueur.pseudo", pseudo)
+		                       .eq("quete.id", idQuete)
+		                       .findUnique();
+		s.etat = Etat.EN_COURS;
+		s.save();
+	}
+
+	public static void valider(Integer idQuete, String pseudo) {
+		Seance s = find.where().eq("joueur.pseudo", pseudo)
+		                       .eq("quete.id", idQuete)
+		                       .findUnique();
+		s.etat = Etat.VALIDEE;
+		
+		Quete suivante = Quete.find.byId(idQuete).suivante;
+		if(suivante != null) {
+			Seance.create(Joueur.find.byId(pseudo), suivante);
+		}
+		
+		s.save();
+	}
 }

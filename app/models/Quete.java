@@ -37,6 +37,14 @@ public class Quete extends Model {
 		this.objDuree = objDuree;
 	}
 	
+	public Integer getObjDistance(Joueur j) {
+		return Math.max(this.objDistance - j.xpVitesse / 100, 2);
+	}
+	
+	public Integer getObjDuree(Joueur j) {
+		return Math.max(this.objDuree - 15 * j.xpEndurance / 200, 15);
+	}
+	
 	public Seance getSeance(String pseudo) {
 		return Seance.find.where().eq("joueur.pseudo", pseudo).eq("quete.id", this.id).findUnique();
 	}

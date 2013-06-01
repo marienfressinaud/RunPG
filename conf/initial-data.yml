@@ -77,7 +77,7 @@ quetes:
     - !!models.Quete
         id:          2
         titre:       Le maniement de la fuite
-        sequenceDeb: On vous a appris depuis tout petit que rien ne sert de combattre, il vaut mieux courir. Considérée comme lâche, vous préférez la considérer comme de la ruse. Mais avant cela, vous devez vous entraîner.
+        sequenceDeb: On vous a appris depuis tout petit que rien ne sert de combattre, il vaut mieux courir. Considérée généralement comme lâche, vous préférez la considérer comme de la ruse. Mais avant cela, vous devez vous entraîner.
         sequenceFin: Bien. Vous maniez la fuite à la perfection.
         objDistance: 6
         objDuree:    45
