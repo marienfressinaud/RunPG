@@ -1,10 +1,15 @@
 package controllers;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.codehaus.jackson.JsonNode;
 
 import models.Seance;
 import models.Joueur;
 import models.Quete;
+import play.libs.Json;
 import play.data.DynamicForm;
 import static play.data.Form.*;
 import play.mvc.Controller;
@@ -15,6 +20,13 @@ import views.html.jeu.*;
 
 @Security.Authenticated(Secured.class)
 public class Jeu extends Controller {
+	private static class PointGPS {
+		public double longitude;
+		public double latitude;
+		public double altitude;
+		public Integer precision;
+		public Date date;
+	}
 
 	public static Result profil() {
 		return ok(profil.render(
@@ -77,8 +89,30 @@ public class Jeu extends Controller {
 	}
 
 	public static Result validerSeance() {
+		DynamicForm requestData = form().bindFromRequest();
+		Integer idQuete = Integer.parseInt(requestData.get("idQuete"));
 		
-	
+		Quete quete = Quete.find.byId(idQuete);
+		Joueur joueur = Joueur.find.byId(request().username());
+		List<PointGPS> liste = Jeu.parsePointsGPS(requestData.get("positions"));
+
 		return TODO;
+	}
+
+	private static List<PointGPS> parsePointsGPS(String positionsJson) {
+		List<PointGPS> listePoints = new ArrayList<PointGPS>();
+		JsonNode jsonList = Json.parse(positionsJson);
+		
+		for(JsonNode jsonElt : jsonList) {
+			PointGPS point = new PointGPS();
+			point.longitude = jsonElt.findPath("lon").asDouble();
+			point.latitude = jsonElt.findPath("lat").asDouble();
+			point.altitude =  jsonElt.findPath("alt").asDouble();
+			point.precision =  jsonElt.findPath("lon").asInt();
+			point.date =  Date.valueOf(jsonElt.findPath("time").asText());
+			listePoints.add(point);
+		}
+		
+		return listePoints;
 	}
 }

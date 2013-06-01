@@ -115,15 +115,13 @@ function sendPositionsToServer() {
 	var distKm = Math.round(distanceParcourue);
 	var diff = dateDiff(startDate, new Date());
 
-	if(distKm < objectifDistance || diff.min < objectifDuree) {
-		alert('oooh, vous avez perdu :(');
-	} else {
+	if(distKm >= objectifDistance && diff.min >= objectifDuree) {
 		$.ajax({
 			type: 'POST',
 			url: server,
 			data: {
 				positions : JSON.stringify(positions),
-				quete : idQuete
+				idQuete : idQuete
 			},
 			success: function(data){
 				alert('yeah aaah !');
