@@ -149,7 +149,13 @@ public class Jeu extends Controller {
 
 	public static Result validerSeance() {
 		DynamicForm requestData = form().bindFromRequest();
-		Integer idQuete = Integer.parseInt(requestData.get("idQuete"));
+		String idTmp = requestData.get("idQuete");
+		Integer idQuete;
+		try {
+			idQuete = Integer.parseInt(idTmp);
+		} catch(NumberFormatException e) {
+			idQuete = 0;
+		}
 		
 		Quete quete = Quete.find.byId(idQuete);
 		Joueur joueur = Joueur.find.byId(request().username());
@@ -226,7 +232,7 @@ public class Jeu extends Controller {
 			joueur.score += gainScore;
 			joueur.save();
 			
-			Seance.terminer(quete.id, joueur.pseudo);
+			Seance.terminer(quete.id, joueur.pseudo, distance, duree);
 			
 			status = "ok";
 		}

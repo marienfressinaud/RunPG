@@ -249,8 +249,8 @@ function sendPositionsToServer() {
 		type: 'POST',
 		url: server,
 		data: {
-			positions : JSON.stringify(positions),
-			idQuete : idQuete
+			idQuete : idQuete,
+			positions : JSON.stringify(positions)
 		},
 		success: function(data){
 			if(data.status == "ok") {

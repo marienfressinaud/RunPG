@@ -47,10 +47,12 @@ public class Seance extends Model {
 		s.save();
 	}
 	
-	public static void terminer(Integer idQuete, String pseudo) {
+	public static void terminer(Integer idQuete, String pseudo, Integer distance, Integer duree) {
 		Seance s = find.where().eq("joueur.pseudo", pseudo)
 		                       .eq("quete.id", idQuete)
 		                       .findUnique();
+		s.distance = distance;
+		s.duree = duree;
 		s.etat = Etat.TERMINEE;
 		s.save();
 	}
