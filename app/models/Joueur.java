@@ -42,9 +42,11 @@ public class Joueur extends Model {
 		this.score += add;
 	}
 	
+/*
 	public int getScore() {
 		return this.score + (this.xpVitesse + this.xpEndurance) / 10;
 	}
+*/
 	
 	public int getProgression() {
 		int totalQuetes = Quete.find.findList().size();

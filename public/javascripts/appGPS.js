@@ -11,13 +11,138 @@ var objectifDuree;
 var startDate;
 var distanceParcourue = 0;
 var dernierePosition = null;
+var nbPoints = 0;
 
 var watcher;
 var positions = new Array();
 
+var timerCompteurs;
+
 // TODO gérer avec Play ?
 var server = '/seance';
-var serverRedirection = '/quetes';
+var serverRedirection = '/profil';
+
+/*
+var posTest = [
+	{
+	coords: {
+		longitude: 5.7673325915,
+		latitude: 45.1933331749,
+		altitude: 267.695526123,
+		accuracy: 15
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76732475552,
+		latitude: 45.1933219616,
+		altitude: 267.683227539,
+		accuracy: 17
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76732315617,
+		latitude: 45.1933328877,
+		altitude: 267.683227539,
+		accuracy: 15
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76731690048,
+		latitude: 45.1933308574,
+		altitude: 267.683227539,
+		accuracy: 15
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76730792179,
+		latitude: 45.1933306173,
+		altitude: 267.683227539,
+		accuracy: 14
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76730107696,
+		latitude: 45.1933313125,
+		altitude: 267.683227539,
+		accuracy: 15
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76729232122,
+		latitude: 45.1933306391,
+		altitude: 267.683227539,
+		accuracy: 15
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76728812959,
+		latitude: 45.1933370844,
+		altitude: 267.683227539,
+		accuracy: 15
+		}
+	},
+	{
+	coords: {
+		longitude: 5.76728082687,
+		latitude: 45.1933431642,
+		altitude: 267.683227539,
+		accuracy: 14
+		}
+	},
+	{
+	coords: {
+		longitude: 5.72788468107,
+		latitude: 45.1891268139,
+		altitude: 267.683227539,
+		accuracy: 29
+		}
+	},
+	{
+	coords: {
+		longitude: 5.72797408593,
+		latitude: 45.1890230576,
+		altitude: 267.683227539,
+		accuracy: 23
+		}
+	},
+	{
+	coords: {
+		longitude: 5.7279589937,
+		latitude: 45.1890282945,
+		altitude: 244.710586548,
+		accuracy: 22
+		}
+	},
+	{
+	coords: {
+		longitude: 5.72793678817,
+		latitude: 45.1890407695,
+		altitude: 242.422225952,
+		accuracy: 23
+		}
+	}
+]
+posTest.forEach(
+	function(location) {
+		updateMap(
+			location.coords.longitude,
+			location.coords.latitude,
+			location.coords.accuracy
+		);
+
+		addPosition(location.coords);
+		updateCompteurs();
+	}
+)
+stopGPS();
+*/
 
 function initGPS() {
 	map = new OpenLayers.Map('mapquest');
@@ -41,16 +166,21 @@ function startGPS() {
 	var lon;
 	startDate = new Date().getTime();
 
+	timerCompteurs = setInterval(updateCompteurs, 1000);
+
 	watcher = navigator.geolocation.watchPosition(
 		function(location) {
+			nbPoints++;
+
 			updateMap(
 				location.coords.longitude,
 				location.coords.latitude,
 				location.coords.accuracy
 			);
 
-			addPosition(location.coords);
-			updateCompteurs();
+			if(nbPoints % 2 == 0) {
+				addPosition(location.coords);
+			}
 		},
 
 		function(error) {
@@ -72,21 +202,21 @@ function updateMap(lon, lat, acc) {
 
 function updateCompteurs() {
 	var distKm = Math.round(distanceParcourue);
-	$('#distance').html(Math.round(distanceParcourue) + " km");
+	$('#distance').html(distKm + " km");
 
 	var diff = dateDiff(startDate, new Date());
-	$('#duree').html(diff.min + " mn");
+	$('#duree').html(diff.min + ":" + diff.sec);
 
-	if(distKm >= objectifDistance) {
+	if(distKm >= objectifDistance && distKm > 0) {
 		$('#distance').addClass('ok');
 	}
-	if(diff.min >= objectifDuree) {
+	if(diff.min >= objectifDuree && diff.min > 0) {
 		$('#duree').addClass('ok');
 	}
 }
 
 function addPosition(pos) {
-	if(pos.accuracy < 25) {
+	if(pos.accuracy < 50) {
 		distanceParcourue += calculerDistance(dernierePosition, pos);
 		positions.push({
 			'lon' : pos.longitude,
@@ -100,6 +230,8 @@ function addPosition(pos) {
 }
 
 function stopGPS() {
+	clearInterval(timerCompteurs);
+
 	button.attr('data-state', 'stop');
 	button.html('Commencer');
 	button.removeClass('btn-attention');
@@ -107,32 +239,40 @@ function stopGPS() {
 	window.navigator.geolocation.clearWatch(watcher);
 
 	sendPositionsToServer();
-
-	//document.location.href = serverRedirection;
 }
 
 function sendPositionsToServer() {
 	var distKm = Math.round(distanceParcourue);
 	var diff = dateDiff(startDate, new Date());
 
-	if(distKm >= objectifDistance && diff.min >= objectifDuree) {
-		$.ajax({
-			type: 'POST',
-			url: server,
-			data: {
-				positions : JSON.stringify(positions),
-				idQuete : idQuete
-			},
-			success: function(data){
-				alert('yeah aaah !');
+	$.ajax({
+		type: 'POST',
+		url: server,
+		data: {
+			positions : JSON.stringify(positions),
+			idQuete : idQuete
+		},
+		success: function(data){
+			if(data.status == "ok") {
+				alert("Vous avez gagné " + data.gainEndurance + " XP en endurance et " + data.gainVitesse + " XP en vitesse !");
+			} else {
+				alert("Vous n'avez pas assez couru !");
 			}
-		});
-	}
+
+			document.location.href = serverRedirection;
+		}
+	});
 }
 
 $(document).ready(function() {
 	objectifDistance = parseInt($('#objDistance').html());
+	if(isNaN(objectifDistance)) {
+		objectifDistance = 0;
+	}
 	objectifDuree = parseInt($('#objDuree').html());
+	if(isNaN(objectifDuree)) {
+		objectifDuree = 0;
+	}
 	idQuete = parseInt($('#quete').attr('data-idQuete'));
 	if(isNaN(idQuete)) {
 		idQuete = 0;

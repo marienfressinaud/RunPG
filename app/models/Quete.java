@@ -42,7 +42,7 @@ public class Quete extends Model {
 	}
 	
 	public Integer getObjDuree(Joueur j) {
-		return Math.max(this.objDuree - 15 * j.xpEndurance / 200, 15);
+		return Math.max(this.objDuree - 15 * j.xpEndurance / 200, 10);
 	}
 	
 	public Seance getSeance(String pseudo) {

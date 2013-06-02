@@ -46,6 +46,14 @@ public class Seance extends Model {
 		s.etat = Etat.EN_COURS;
 		s.save();
 	}
+	
+	public static void terminer(Integer idQuete, String pseudo) {
+		Seance s = find.where().eq("joueur.pseudo", pseudo)
+		                       .eq("quete.id", idQuete)
+		                       .findUnique();
+		s.etat = Etat.TERMINEE;
+		s.save();
+	}
 
 	public static void valider(Integer idQuete, String pseudo) {
 		Seance s = find.where().eq("joueur.pseudo", pseudo)

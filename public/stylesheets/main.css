@@ -335,9 +335,8 @@ input, select, textarea {
 	}
 .horizontal-list.navbar {
 	padding: 1px 0;
-	background: linear-gradient(to bottom, #222, #111);
 	background: #1b1b1b;
-	box-shadow: 0 0 3px #aaa;
+	background: linear-gradient(to bottom, #222, #111) !important;
 }
 	.horizontal-list.navbar .item,
 	.horizontal-list.navbar .item a {

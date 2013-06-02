@@ -115,7 +115,7 @@ public class ModelsTest extends WithApplication {
 
 		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
 		
-		new Seance(9, 9, 60, "2013-05-29.gpx", Etat.TERMINEE, Julien, quete).save();
+		new Seance(9, 60, Etat.TERMINEE, Julien, quete).save();
 		Seance etat = Seance.find.where().eq("id", 1).findUnique();
 		
 		assertNotNull(etat);

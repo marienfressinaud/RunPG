@@ -14,7 +14,7 @@ body {
 }
 
 .mainbar .item.menu {
-	width: 150px;
+	width: 125px;
 	border-right: 2px solid transparent;
 	border-left: 2px solid transparent;
 }
@@ -134,7 +134,7 @@ body {
 		.horizontal-list.compteurs .item,
 		.horizontal-list.controles .item {
 			display: inline-block;
-			width: 50%;
+			width: 40%;
 			padding: 0;
 			margin: 0;
 			vertical-align: middle;
@@ -188,6 +188,9 @@ table td {
 	padding: 0 5px;
 	border-bottom: 1px solid #ddd;
 }
+	table tr:last-child td {
+		border-bottom: 1px solid #aaa;
+	}
 table .small {
 	width: 70px;
 	text-align: center;
@@ -218,6 +221,12 @@ table .small {
 		text-align: center;
 	}
 
+	.form-group .group-name {
+		display: none;
+	}
+	.form-group .group-controls {
+		margin: 0;
+	}
 	input {
 		margin: 5px 0;
 	}
