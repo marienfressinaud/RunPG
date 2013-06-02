@@ -24,10 +24,10 @@ joueurs:
 
     - !!models.Joueur
         pseudo:      Marien
-        password:    Bl4Bl4S3cr3t
-        score:       420
-        xpVitesse:   300
-        xpEndurance: 540
+        password:    marien
+        score:       7
+        xpVitesse:   58
+        xpEndurance: 65
 
 chapitres:
 
@@ -107,7 +107,7 @@ seances:
     - !!models.Seance
         distance:       0
         duree:          0
-        etat:           NOUVELLE
+        etat:           VALIDEE
         joueur:
             !!models.Joueur
                 pseudo: Bob
@@ -118,7 +118,7 @@ seances:
     - !!models.Seance
         distance:       0
         duree:          0
-        etat:           EN_COURS
+        etat:           NOUVELLE
         joueur:
             !!models.Joueur
                 pseudo: Julien
@@ -129,7 +129,7 @@ seances:
     - !!models.Seance
         distance:       4
         duree:          30
-        etat:           VALIDEE
+        etat:           TERMINEE
         joueur:
             !!models.Joueur
                 pseudo: Marien
@@ -154,7 +154,7 @@ seances:
         etat:           TERMINEE
         joueur:
             !!models.Joueur
-                pseudo: Marien
+                pseudo: Bob
         quete:
             !!models.Quete
                 id : 2
@@ -173,7 +173,7 @@ seances:
     - !!models.Seance
         distance:       0
         duree:          0
-        etat:           EN_COURS
+        etat:           NOUVELLE
         joueur:
             !!models.Joueur
                 pseudo: Pat
