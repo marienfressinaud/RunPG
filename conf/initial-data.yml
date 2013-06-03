@@ -7,13 +7,15 @@ joueurs:
         score:       42
         xpVitesse:   120
         xpEndurance: 100
+        estAdmin:    false
 
     - !!models.Joueur
         pseudo:      Julien
         password:    jujudu38
-        score:       10
+        score:       0
         xpVitesse:   10
         xpEndurance: 50
+        estAdmin:    false
 
     - !!models.Joueur
         pseudo:      Pat
@@ -21,13 +23,15 @@ joueurs:
         score:       500
         xpVitesse:   1560
         xpEndurance: 100
+        estAdmin:    false
 
     - !!models.Joueur
         pseudo:      Marien
         password:    marien
         score:       7
-        xpVitesse:   58
-        xpEndurance: 65
+        xpVitesse:   173
+        xpEndurance: 115
+        estAdmin:    true
 
 chapitres:
 

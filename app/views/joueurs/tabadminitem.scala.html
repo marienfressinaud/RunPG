@@ -1,0 +1,18 @@
+@(joueur: Joueur)
+
+<tr>
+	<td class="avatar small"><img alt="" src="@routes.Assets.at(joueur.getAvatar())" /></td>
+	<td class="pseudo">@joueur.pseudo</td>
+	<td class="score"><input form="form_@joueur.pseudo" type="number" name="score" value="@joueur.score" /></td>
+	<td class="xpVitesse"><input form="form_@joueur.pseudo" type="number" name="xpVitesse" value="@joueur.xpVitesse" /></td>
+	<td class="xpEndurance"><input form="form_@joueur.pseudo" type="number" name="xpEndurance" value="@joueur.xpEndurance" /></td>
+	<td class="gestion">
+		<form id="form_@joueur.pseudo" method="post" action="@routes.Admin.update">
+			<input type="hidden" name="pseudo" value="@joueur.pseudo" />
+			<ul>
+				<li><button class="btn btn-important" name="submit" value="update" type="submit">Modifier</button></li>
+				<li><button class="btn btn-attention" name="submit" value="delete" type="submit">Supprimer</button></li>
+			</ul>
+		</form>
+	</td>
+</tr>

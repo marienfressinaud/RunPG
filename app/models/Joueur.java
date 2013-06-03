@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.avaje.ebean.Ebean;
+
 import play.db.ebean.*;
 
 @Entity
@@ -19,17 +21,19 @@ public class Joueur extends Model {
 	public Integer score;
 	public Integer xpVitesse;
 	public Integer xpEndurance;
+	public Boolean estAdmin;
 
 	public Joueur(String pseudo, String password, Integer score,
-	              Integer xpVitesse, Integer xpEndurance) {
+	              Integer xpVitesse, Integer xpEndurance, Boolean estAdmin) {
 		this.pseudo = pseudo;
 		this.password = password;
 		this.score = score;
 		this.xpVitesse = xpVitesse;
 		this.xpEndurance = xpEndurance;
+		this.estAdmin = estAdmin;
 	}
 	public Joueur(String pseudo, String password) {
-		this(pseudo, password, 0, 0, 0);
+		this(pseudo, password, 0, 0, 0, false);
 	}
 	
 	public static Joueur authenticate(String pseudo, String password) {
@@ -41,12 +45,6 @@ public class Joueur extends Model {
 	public void augmenterScore(Integer add) {
 		this.score += add;
 	}
-	
-/*
-	public int getScore() {
-		return this.score + (this.xpVitesse + this.xpEndurance) / 10;
-	}
-*/
 	
 	public int getProgression() {
 		int totalQuetes = Quete.find.findList().size();
@@ -75,9 +73,17 @@ public class Joueur extends Model {
 	public static List<Joueur> listByScore() {
 		return find.where().orderBy("score desc").findList();
 	}
+
+	public static List<Joueur> listByPseudo() {
+		return find.where().orderBy("pseudo").findList();
+	}
 	
 	public static Boolean exist(String pseudo) {
-		return find.where().eq("pseudo", pseudo).findUnique() != null;
+		return find.byId(pseudo) != null;
+	}
+	
+	public static Boolean estAdmin(String pseudo) {
+		return find.byId(pseudo).estAdmin;
 	}
 	
 	public static Joueur create(String pseudo, String password) {
@@ -87,5 +93,19 @@ public class Joueur extends Model {
 		Seance.create(j, Quete.getQueteInitiale());
 		
 		return j;
+	}
+	
+	public static void update(String pseudo, Integer score,
+	                          Integer xpVit, Integer xpEnd) {
+		Joueur j = find.byId(pseudo);
+		j.score = score;
+		j.xpVitesse = xpVit;
+		j.xpEndurance = xpEnd;
+		j.save();
+	}
+	
+	public static void delete(Joueur j) {
+		Seance.deleteByJoueur(j.pseudo);
+		Ebean.delete(j);
 	}
 }

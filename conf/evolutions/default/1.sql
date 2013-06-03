@@ -15,6 +15,7 @@ create table joueur (
   score                     integer,
   xp_vitesse                integer,
   xp_endurance              integer,
+  est_admin                 boolean,
   constraint pk_joueur primary key (pseudo))
 ;
 

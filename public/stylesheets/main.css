@@ -485,11 +485,11 @@ input, select, textarea {
 		background-image: url("icons/refresh.png");
 		background-image: url("icons/refresh.svg");
 	}
-	.icon.i_bookmark {
+	.icon.i_starred {
 		background-image: url("icons/starred.png");
 		background-image: url("icons/starred.svg");
 	}
-	.icon.i_not_bookmark {
+	.icon.i_not_starred {
 		background-image: url("icons/unstarred.png");
 		background-image: url("icons/unstarred.svg");
 	}

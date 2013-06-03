@@ -1,0 +1,6 @@
+@(nav: String)
+
+<ul class="nav nav-list aside">
+	<li class="nav-header">Administration</li>
+	<li class="item @("active".when(nav == "index"))"><a href="@routes.Admin.index()">Gestion des joueurs</a></li>
+</ul>

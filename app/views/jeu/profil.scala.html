@@ -6,7 +6,11 @@
 		@views.html.joueurs.mediaitem(joueur)
 	</div>
 
-	<div class="experience">
+	@if(flash.contains("success")) {
+	<p class="alert alert-success">@flash.get("success")</p>
+	}
+
+	<div class="content experience">
 		<h1>Expérience <i class="icon i_help" title="Gagnez de l'expérience et réduisez vos objectifs de quêtes !">&nbsp;</i></h1>
 
 		<div class="item vitesse">
@@ -19,7 +23,7 @@
 		</div>
 	</div>
 
-	<div class="inventaire">
+	<div class="content inventaire">
 		<h1>Inventaire</h1>
 
 		<p class="alert alert-warn">Votre inventaire est vide (en fait il n'a pas été implémenté)</p>

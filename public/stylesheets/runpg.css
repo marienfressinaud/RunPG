@@ -81,30 +81,28 @@ body {
 	.aside-profil {
 		vertical-align: middle;
 	}
-	.experience {
-		padding: 0 30px;
-		margin: 0 0 50px;
-		text-align: center;
-	}
-		.experience .item {
-			display: inline-block;
-			padding: 50px;
-			margin: 0 50px;
-		}
-			.experience .item .points {
-				display: block;
-				font-size: 400%;
-				font-weight: bold;
-				text-shadow: 2px 2px 2px #aaa;
-			}
-	.inventaire,
-	.quete {
-		padding: 0 30px;
-	}
 
-	.experience h1,
-	.inventaire h1,
-	.quete h1 {
+	.game-template .content {
+		max-width: none;
+		padding: 0 30px;
+	}
+		.game-template .content.experience {
+			margin: 0 0 50px;
+			text-align: center;
+		}
+			.content.experience .item {
+				display: inline-block;
+				padding: 50px;
+				margin: 0 50px;
+			}
+				.content.experience .item .points {
+					display: block;
+					font-size: 400%;
+					font-weight: bold;
+					text-shadow: 2px 2px 2px #aaa;
+				}
+
+	.game-template .content h1 {
 		margin: 20px 0 5px;
 		padding: 5px 0;
 		border-bottom: 1px solid #ddd;
@@ -248,7 +246,7 @@ table .small {
 	.experience .item {
 		padding: 0;
 	}
-	.experience, .inventaire, .quete,
+	.game-template .content,
 	.horizontal-list .separator,
 	.horizontal-list .item {
 		display: block;

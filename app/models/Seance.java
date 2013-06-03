@@ -1,6 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.avaje.ebean.Ebean;
+
 import play.db.ebean.*;
 
 @Entity
@@ -69,5 +74,12 @@ public class Seance extends Model {
 		}
 		
 		s.save();
+	}
+
+	public static void deleteByJoueur(String pseudo) {
+		List<Seance> liste = find.where().eq("joueur.pseudo", pseudo).findList();
+		for(Seance s : liste) {
+			Ebean.delete(s);
+		}
 	}
 }

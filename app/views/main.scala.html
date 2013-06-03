@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<title>@title</title>
+		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0">
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/fallback.css")">
 		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
@@ -26,7 +27,7 @@
 			</li>
 			@if(joueur == null) {
 			<li class="item">&nbsp;</li>
-			<li class="item @("active".when(nav == "login"))"><a href="@routes.Application.login()">S'inscrire / se connecter</a></li>
+			<li class="item @("active".when(nav == "login"))"><a href="@routes.Application.login()"><i class="icon i_login"></i> S'inscrire / se connecter</a></li>
 			} else {
 			<li class="item menu @("active".when(nav == "profil"))">
 				<a href="@routes.Jeu.profil()">Profil</a>
@@ -38,7 +39,14 @@
 				<a href="@routes.Jeu.seance(0)">Entraînement</a>
 			</li>
 			<li class="item">&nbsp;</li>
-			<li class="item">@joueur.pseudo (<a href="@routes.Application.logout()">se déconnecter</a>)</li>
+			@if(Joueur.estAdmin(joueur.pseudo)) {
+			<li class="item">
+				<a href="@routes.Admin.index()"><i class="icon i_starred"></i> @joueur.pseudo</a> (<a href="@routes.Application.logout()">se déconnecter</a>)</li>
+			} else {
+			<li class="item">
+				@joueur.pseudo (<a href="@routes.Application.logout()">se déconnecter</a>)
+			</li>
+			}
 			}
 		</ul>
 

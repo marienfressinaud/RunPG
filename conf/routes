@@ -22,5 +22,8 @@ GET    /seance                      controllers.Jeu.seance(id: Integer = 0)
 GET    /seance/$id<[0-9]+>          controllers.Jeu.seance(id: Integer)
 POST   /seance                      controllers.Jeu.validerSeance()
 
+GET     /admin                      controllers.Admin.index()
+POST     /admin                     controllers.Admin.update()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

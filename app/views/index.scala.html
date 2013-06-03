@@ -2,20 +2,16 @@
 
 @main(joueur, "RunPG") {
 <div class="content">
-	@if(flash.contains("success")) {
-	<p class="alert alert-success">@flash.get("success")</p>
-	}
-
 	@if(joueurs.size() > 0) {
 	<div class="top3">
-		<h1>Top 3 des joueurs</h1>
+		<h1>Top @Math.min(3, joueurs.size()) des joueurs</h1>
 
 		@if(joueur != null) {
 		<a href="@routes.Application.classement()">Voir le classement complet</a>
 		}
 
 		<ul class="horizontal-list">
-		@for(j <- joueurs.subList(0, 3)) {
+		@for(j <- joueurs.subList(0, Math.min(3, joueurs.size()))) {
 			<li class="item">@views.html.joueurs.mediaitem(j)</li>
 		}
 		</ul>

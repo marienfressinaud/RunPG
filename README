@@ -13,7 +13,7 @@ Il s'agit d'un projet web pour l'Ensimag, un certain nombre de contraintes sont 
 - Une partie du site en GWT (souhaitable) -> ne sera pas fait (ou alors une page qui ne sert à rien)
 - Version mobile de l'application (optionnel)
 
-État du projet (63% terminé)
+État du projet (75% terminé)
 ====================
 Page d'accueil / classement joueurs : OK
 Inscription utilisateurs : OK
@@ -25,8 +25,8 @@ Responsive design : OK
 Page enregistrement parcours : OK
 Enregistrement parcours (client -> serveur) : OK % pas possible d'envoyer trop de points GPS
 Gain XP + évolution score : OK
-Gestion droits utilisateurs : NOK
-Page administrateur : NOK
+Gestion droits utilisateurs : OK
+Page administrateur : OK
 Flux RSS évolution joueurs : NOK
 FlUX RSS classement joueurs : NOK
 Tests : ~NOK
