@@ -6,9 +6,7 @@
 	<div class="top3">
 		<h1>Top @Math.min(3, joueurs.size()) des joueurs</h1>
 
-		@if(joueur != null) {
 		<a href="@routes.Application.classement()">Voir le classement complet</a>
-		}
 
 		<ul class="horizontal-list">
 		@for(j <- joueurs.subList(0, Math.min(3, joueurs.size()))) {

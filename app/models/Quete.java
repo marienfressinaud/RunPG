@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.avaje.ebean.ExpressionList;
+
 import play.db.ebean.*;
 
 @Entity
@@ -66,8 +68,14 @@ public class Quete extends Model {
 		return find.where().eq("chapitre.numero", numero).findList();
 	}
 
-	public static List<Quete> listByJoueur(String pseudo) {
-		List<Seance> seances = Seance.find.where().eq("joueur.pseudo", pseudo).findList();
+	public static List<Quete> listByJoueur(String pseudo, Boolean sensInverse) {
+		ExpressionList<Seance> liste = Seance.find.where().eq("joueur.pseudo", pseudo);
+		List<Seance> seances = null;
+		if(sensInverse) {
+			seances = liste.orderBy("id desc").findList();
+		} else {
+			seances = liste.findList();
+		}
 		
 		List<Quete> quetes = new ArrayList<Quete>();
 		for(Seance s : seances) {

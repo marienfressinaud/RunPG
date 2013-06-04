@@ -1,0 +1,55 @@
+@(joueur: Joueur, quetes: List[Quete])<?xml version="1.0" encoding="UTF-8" ?>
+@import org.joda.time.DateMidnight
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Flux RSS de @joueur.pseudo</title>
+		<link>http://@request().getHeader("HOST")@routes.Application.index()</link>
+		<description>@joueur.pseudo est un joueur de RunPG, suivez-le durant ses quêtes !</description>
+		<pubDate>@{new DateMidnight().toString("E, d MMM y HH:mm:ss Z", Locale.ENGLISH)}</pubDate>
+		<lastBuildDate>@{new DateMidnight().toString("E, d MMM y HH:mm:ss Z", Locale.ENGLISH)}</lastBuildDate>
+		<atom:link href="http://@request().getHeader("HOST")@routes.Application.feed("")" rel="self" type="application/rss+xml" />
+
+		@for(q <- quetes) {
+		<item>
+			<title>@joueur.pseudo - @q.titre</title>
+			<link>http://@request().getHeader("HOST")@routes.Application.feed(joueur.pseudo)</link>
+			<dc:creator>@joueur.pseudo</dc:creator>
+			<description><![CDATA[
+<h2>@q.titre</h2>
+@q.getSeance(joueur.pseudo).etat match {
+case Seance.Etat.NOUVELLE => {
+	@joueur.pseudo vient de découvrir cette nouvelle quête.
+}
+case Seance.Etat.EN_COURS => {
+	@joueur.pseudo a commencé cette quête.
+}
+case Seance.Etat.TERMINEE => {
+	@joueur.pseudo a terminé cette quête.
+
+	<h2>Scores réalisés</h2>
+	<ul>
+		<li>Durée : @q.getSeance(joueur.pseudo).duree</li>
+		<li>Distance : @q.getSeance(joueur.pseudo).distance</li>
+	</ul>
+}
+case Seance.Etat.VALIDEE => {
+	@joueur.pseudo a terminé cette quête et en a débuté une nouvelle.
+
+	<h2>Scores réalisés</h2>
+	<ul>
+		<li>Durée : @q.getSeance(joueur.pseudo).duree minutes</li>
+		<li>Distance : @q.getSeance(joueur.pseudo).distance km</li>
+	</ul>
+}
+}
+
+]]></description>
+			<pubDate>@{new DateMidnight().toString("E, d MMM y HH:mm:ss Z", Locale.ENGLISH)}</pubDate>
+			<guid isPermaLink="false">RunPG-@joueur.pseudo-@q.id</guid>
+		</item>
+		}		
+
+	</channel>
+</rss>
+
+

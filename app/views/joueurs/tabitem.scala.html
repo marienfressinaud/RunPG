@@ -2,7 +2,7 @@
 
 <tr>
 	<td class="avatar small"><img alt="" src="@routes.Assets.at(joueur.getAvatar())" /></td>
-	<td class="pseudo">@joueur.pseudo</td>
+	<td class="pseudo">@joueur.pseudo <a href="@routes.Application.feed(joueur.pseudo)"><i class="icon i_rss"></i></a></td>
 	<td class="score">@joueur.score</td>
 	<td class="xpVitesse">@joueur.xpVitesse</td>
 	<td class="xpEndurance">@joueur.xpEndurance</td>

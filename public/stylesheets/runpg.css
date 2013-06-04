@@ -84,10 +84,10 @@ body {
 
 	.game-template .content {
 		max-width: none;
+		margin: 0;
 		padding: 0 30px;
 	}
-		.game-template .content.experience {
-			margin: 0 0 50px;
+		.content.experience {
 			text-align: center;
 		}
 			.content.experience .item {
@@ -197,6 +197,16 @@ table .small {
 		max-width: 70px;
 	}
 
+.gestion ul {
+	list-style: none;
+	margin: 0 0 0 5px;
+}
+button.not-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
 @media(max-width: 800px) {
 
 	.mainbar .item:first-child,
@@ -256,5 +266,9 @@ table .small {
 	}
 	.nav.nav-list {
 		margin: 0;
+	}
+
+	button.not-btn span {
+		display: none;
 	}
 }

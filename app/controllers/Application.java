@@ -31,7 +31,6 @@ public class Application extends Controller {
 			if (newAccount == null && Joueur.authenticate(pseudo, password) == null) {
 				return "Pseudo ou mot de passe incorrect";
 			}
-			
 			return null;
 		}
 	}
@@ -47,6 +46,20 @@ public class Application extends Controller {
 			joueur,
 			Joueur.listByScore()
 		));
+	}
+	
+	public static Result feed(String pseudo) {
+		if(pseudo.equals("")) {
+			return ok(feedClassement.render(
+				Joueur.listByScore()
+			)).as("text/xml");
+		}
+		
+		Joueur j = Joueur.find.byId(pseudo);
+		return ok(feedJoueur.render(
+			j,
+			Quete.listByJoueur(j.pseudo, true)
+		)).as("text/xml");
 	}
 	
 	public static Result login() {
@@ -92,10 +105,15 @@ public class Application extends Controller {
 		);
 	}
 
-	@Security.Authenticated(Secured.class)
 	public static Result classement() {
+		String pseudo = session().get("pseudo");
+		Joueur joueur = null;
+		if(pseudo != null) {
+			joueur = Joueur.find.byId(pseudo);
+		}
+		
 		return ok(classement.render(
-			Joueur.find.byId(request().username()),
+			joueur,
 			Joueur.listByScore()
 		));
 	}

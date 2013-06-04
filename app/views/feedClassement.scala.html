@@ -1,0 +1,35 @@
+@(joueurs: List[Joueur])<?xml version="1.0" encoding="UTF-8" ?>
+@import org.joda.time.DateMidnight
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Flux RSS du classement de RunPG</title>
+		<link>http://@request().getHeader("HOST")@routes.Application.index()</link>
+		<description>Les joueurs de RunPG s'affrontent, qui sera le meilleur ?</description>
+		<pubDate>@{new DateMidnight().toString("E, d MMM y HH:mm:ss Z", Locale.ENGLISH)}</pubDate>
+		<lastBuildDate>@{new DateMidnight().toString("E, d MMM y HH:mm:ss Z", Locale.ENGLISH)}</lastBuildDate>
+		<atom:link href="http://@request().getHeader("HOST")@routes.Application.feed("")" rel="self" type="application/rss+xml" />
+
+		@for(j <- joueurs) {
+		<item>
+			<title>@j.pseudo - score : @j.score</title>
+			<link>http://@request().getHeader("HOST")@routes.Application.feed(j.pseudo)</link>
+			<dc:creator>RunPG</dc:creator>
+			<description><![CDATA[
+<h2>@j.pseudo</h2>
+Score : @j.score points
+
+<h2>Expérience</h1>
+<ul>
+	<li>XP vitesse : @j.xpVitesse</li>
+	<li>XP endurance : @j.xpEndurance</li>
+</ul>
+
+<h2>Progression</h2>
+Il a terminé le jeu à @j.getProgression()%]]></description>
+			<pubDate>@{new DateMidnight().toString("E, d MMM y HH:mm:ss Z", Locale.ENGLISH)}</pubDate>
+			<guid isPermaLink="false">RunPG-@j.pseudo</guid>
+		</item>
+		}		
+
+	</channel>
+</rss>

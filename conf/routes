@@ -3,27 +3,30 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                                  controllers.Application.index()
 
-GET     /login                      controllers.Application.login()
-POST    /login                      controllers.Application.authenticate()
-GET     /logout                     controllers.Application.logout()
+GET     /login                             controllers.Application.login()
+POST    /login                             controllers.Application.authenticate()
+GET     /logout                            controllers.Application.logout()
 
-GET     /classement                 controllers.Application.classement()
+GET     /classement                        controllers.Application.classement()
+
+GET     /feed                              controllers.Application.feed(pseudo: String = "")
+GET     /feed/$pseudo<[a-zA-Z0-9-_]{3,30}> controllers.Application.feed(pseudo: String)
 
 # Jeu
-GET     /profil                     controllers.Jeu.profil()
+GET     /profil                            controllers.Jeu.profil()
 
-GET     /quetes                     controllers.Jeu.quetes(id: Integer = 0)
-GET     /quetes/$id<[0-9]+>         controllers.Jeu.quetes(id: Integer)
-POST    /quetes                     controllers.Jeu.validerQuete()
+GET     /quetes                            controllers.Jeu.quetes(id: Integer = 0)
+GET     /quetes/$id<[0-9]+>                controllers.Jeu.quetes(id: Integer)
+POST    /quetes                            controllers.Jeu.validerQuete()
 
-GET    /seance                      controllers.Jeu.seance(id: Integer = 0)
-GET    /seance/$id<[0-9]+>          controllers.Jeu.seance(id: Integer)
-POST   /seance                      controllers.Jeu.validerSeance()
+GET    /seance                             controllers.Jeu.seance(id: Integer = 0)
+GET    /seance/$id<[0-9]+>                 controllers.Jeu.seance(id: Integer)
+POST   /seance                             controllers.Jeu.validerSeance()
 
-GET     /admin                      controllers.Admin.index()
-POST     /admin                     controllers.Admin.update()
+GET     /admin                             controllers.Admin.index()
+POST     /admin                            controllers.Admin.update()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file                      controllers.Assets.at(path="/public", file)

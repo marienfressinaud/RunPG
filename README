@@ -27,8 +27,8 @@ Enregistrement parcours (client -> serveur) : OK % pas possible d'envoyer trop d
 Gain XP + évolution score : OK
 Gestion droits utilisateurs : OK
 Page administrateur : OK
-Flux RSS évolution joueurs : NOK
-FlUX RSS classement joueurs : NOK
+Flux RSS évolution joueurs : OK
+FlUX RSS classement joueurs : OK
 Tests : ~NOK
 Création d'une vraie histoire pour le jeu : NOK
 
@@ -66,13 +66,13 @@ Améliorations possibles
 1. Après des tests, il n'est pas possible d'envoyer un parcours faisant ~> 30 mn (correspondant à environ 30 * 60 = 1800 points GPS). La supposition est que HTTP ne permet pas d'envoyer une en-tête aussi grande.
 On pourrait corriger ce problème en envoyant régulièrement (tous les 200 points GPS par exemple) les données au serveur. Néanmoins, Internet n'étant pas forcément disponible tout le long du parcours, on ne peut pas se contenter de ça. On peut ainsi mettre les points GPS sur le stockage du téléphone à l'aide de la technologie Local Storage de HTML5 et les synchroniser quand Internet est accessible.
 
-2. Les différents états d'une quête doivent permettre plus de souplesse entre le passage d'une quête à une autre. Les possibilités ne sont pas réellement utilisées ici.
+2. Les différents états d'une quête doivent permettre plus de souplesse entre le passage d'une quête à une autre. Les possibilités ne sont pas réellement utilisées ici. On pourrait par exemple, au moment de passer une quête en EN_COURS, verrouiller les objectifs sans que l'expérience ne puisse plus influencer dessus. Avant de valider une quête, on pourrait aussi la refaire autant de fois que l'on veut mais en ne prenant en compte dans l'expérience que la meilleure course.
 
 3. Au début et à la fin d'une quête, j'avais prévu que le message expliquant l'enchaînement des quêtes se fassent dans un écran "spécial" avec séquence de textes sur background illustrant l'histoire. Ce système s'appuyait d'ailleurs sur les différents états des quêtes pour lancer automatiquement la séquence.
 Par exemple, la séquence de début d'une quête aurait dû ressembler à ceci en base de données (les triples tirets indique un changement de message dans la séquence) :
 ```
 background: url('img/seq1_1.jpg')
-Il était une fois dans un pays très très lointain, un roi très très méchant.
+Il était une fois dans un royaume très très lointain, un roi très très méchant.
 
 ---
 background: url('img/seq1_2.jpg')
@@ -84,3 +84,5 @@ Tous les hommes du royaume n'avaient d'yeux que pour elle, ce qui embêtait bien
 ``` (etc.)
 
 4. Les joueurs devraient être capable de pouvoir rentrer en contact entre eux (système de messages privés, amis, etc.) afin de rendre le site plus "sociale". Mais je n'ai pas jugé que c'était une fonctionnalité suffisamment importante pour que je me penche dessus.
+
+5. La gestion du profil n'a pas fait l'objet d'une grande attention. Il devrait être possible au moins de modifier son avatar

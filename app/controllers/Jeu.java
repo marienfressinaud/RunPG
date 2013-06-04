@@ -27,7 +27,7 @@ public class Jeu extends Controller {
 	private static class Realisation {
 		public Integer duree;
 		public Integer distance;
-
+	
 		private Realisation(Integer duree, Integer distance) {
 			this.duree = duree;
 			this.distance = distance;
@@ -94,7 +94,7 @@ public class Jeu extends Controller {
 	}
 	
 	public static Result quetes(Integer id) {
-		List<Quete> listeQuetes = Quete.listByJoueur(request().username());
+		List<Quete> listeQuetes = Quete.listByJoueur(request().username(), false);
 		Quete queteActuelle = null;
 		
 		if(id > 0) {

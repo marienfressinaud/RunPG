@@ -2,7 +2,7 @@
 
 <ul class="media-list">
 	<li class="avatar"><img alt="" src="@routes.Assets.at(joueur.getAvatar())" /></li>
-	<li class="pseudo">@joueur.pseudo</li>
+	<li class="pseudo">@joueur.pseudo <a href="@routes.Application.feed(joueur.pseudo)"><i class="icon i_rss"></i></a></li>
 	<li class="score">@joueur.score points</li>
 	<li class="progression">@joueur.getProgression()% du jeu terminé</li>
 </ul>

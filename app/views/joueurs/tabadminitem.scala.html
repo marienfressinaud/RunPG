@@ -10,8 +10,8 @@
 		<form id="form_@joueur.pseudo" method="post" action="@routes.Admin.update">
 			<input type="hidden" name="pseudo" value="@joueur.pseudo" />
 			<ul>
-				<li><button class="btn btn-important" name="submit" value="update" type="submit">Modifier</button></li>
-				<li><button class="btn btn-attention" name="submit" value="delete" type="submit">Supprimer</button></li>
+				<li><button class="not-btn" name="submit" value="update" type="submit"><i class="icon i_refresh"></i><span> Modifier</span></button></li>
+				<li><button class="not-btn" name="submit" value="delete" type="submit"><i class="icon i_close"></i><span> Supprimer</span></button></li>
 			</ul>
 		</form>
 	</td>
