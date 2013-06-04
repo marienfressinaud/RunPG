@@ -64,8 +64,22 @@ public class Quete extends Model {
 		return quete;
 	}
 
-	public static List<Quete> findByChapitre(Integer numero) {
+	public static List<Quete> listByChapitre(Integer numero) {
 		return find.where().eq("chapitre.numero", numero).findList();
+	}
+
+	public static List<Quete> listByJoueurAndChapitre(String pseudo, Integer numero) {
+		List<Seance> seances = Seance.find.where()
+		                             .eq("joueur.pseudo", pseudo)
+		                             .eq("quete.chapitre.numero", numero)
+		                             .findList();
+		
+		List<Quete> quetes = new ArrayList<Quete>();
+		for(Seance s : seances) {
+			quetes.add(find.byId(s.quete.id));
+		}
+		
+		return quetes;
 	}
 
 	public static List<Quete> listByJoueur(String pseudo, Boolean sensInverse) {
@@ -87,5 +101,19 @@ public class Quete extends Model {
 	
 	public static Quete getQueteInitiale() {
 		return find.where().eq("id", 1).findUnique();
+	}
+
+	public static Quete lastActiveByJoueur(String pseudo) {
+		List<Quete> listeQuetes = Quete.listByJoueur(pseudo, false);
+		for(Quete quete : listeQuetes) {
+			Seance seance = quete.getSeance(pseudo);
+			if(seance.etat.equals(Seance.Etat.NOUVELLE) ||
+			   seance.etat.equals(Seance.Etat.EN_COURS) ||
+			   seance.etat.equals(Seance.Etat.TERMINEE)) {
+				return Quete.find.byId(seance.quete.id);
+			}
+		}
+		
+		return null;
 	}
 }

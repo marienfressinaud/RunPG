@@ -97,7 +97,7 @@ public class ModelsTest extends WithApplication {
 		);
 		Quete.create(quete2, quete.id, 1);
 		
-		List<Quete> quetes = Quete.findByChapitre(1);
+		List<Quete> quetes = Quete.listByChapitre(1);
 		assertEquals(2, quetes.size());
 		assertEquals("Re-Sauver le monde", quetes.get(0).titre);
 	}

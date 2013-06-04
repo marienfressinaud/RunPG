@@ -6,14 +6,14 @@ Les quêtes consistent à parcourir un certain nombre de kilomètres en un minim
 Contraintes
 ===========
 Il s'agit d'un projet web pour l'Ensimag, un certain nombre de contraintes sont imposées :
-- Utilisation du framework Java Play (obligatoire)
-- Gestion de droits avec différents niveaux d'utilisateurs (obligatoire)
-- Gestion d'un flux RSS (optionnel)
-- Utilisation d'un webservice (souhaitable)
-- Une partie du site en GWT (souhaitable) -> ne sera pas fait (ou alors une page qui ne sert à rien)
-- Version mobile de l'application (optionnel)
+- Utilisation du framework Java Play (obligatoire) : OK
+- Gestion de droits avec différents niveaux d'utilisateurs (obligatoire) : OK (visiteur, joueur, admin)
+- Gestion d'un flux RSS (optionnel) : OK (classement et joueur)
+- Utilisation d'un webservice (souhaitable) : OK (maps et données de OpenStreetMaps)
+- Une partie du site en GWT (souhaitable) -> NOK (choix assumé, cette techno ne convient pas dans le cadre de bons usages)
+- Version mobile de l'application (optionnel) : OK (tout le site est full responsive design)
 
-État du projet (75% terminé)
+État du projet (88% terminé)
 ====================
 Page d'accueil / classement joueurs : OK
 Inscription utilisateurs : OK

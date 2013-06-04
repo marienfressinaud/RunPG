@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.*;
 import play.db.ebean.*;
 
@@ -16,5 +18,13 @@ public class Chapitre extends Model {
 	public Chapitre(Integer numero, String nom) {
 		this.numero = numero;
 		this.nom = nom;
+	}
+	
+	public List<Quete> listQuetesByJoueur(String pseudo) {
+		return Quete.listByJoueurAndChapitre(pseudo, this.numero);
+	}
+	
+	public Boolean activeForJoueur(String pseudo) {
+		return Quete.listByJoueurAndChapitre(pseudo, this.numero).size() > 0;
 	}
 }

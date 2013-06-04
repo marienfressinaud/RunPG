@@ -8,6 +8,7 @@ import org.codehaus.jackson.node.ObjectNode;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
+import models.Chapitre;
 import models.PointGPS;
 import models.Seance;
 import models.Joueur;
@@ -94,27 +95,24 @@ public class Jeu extends Controller {
 	}
 	
 	public static Result quetes(Integer id) {
-		List<Quete> listeQuetes = Quete.listByJoueur(request().username(), false);
+		List<Chapitre> listeChapitres = Chapitre.find.where().findList();
+		Joueur joueur = Joueur.find.byId(request().username());
 		Quete queteActuelle = null;
 		
 		if(id > 0) {
 			queteActuelle = Quete.find.byId(id);
-		}
-		
-		if(queteActuelle == null) {
-			for(Quete quete : listeQuetes) {
-				Seance seance = quete.getSeance(request().username());
-				if(seance.etat.equals(Seance.Etat.NOUVELLE) ||
-				   seance.etat.equals(Seance.Etat.EN_COURS) ||
-				   seance.etat.equals(Seance.Etat.TERMINEE)) {
-					queteActuelle = Quete.find.byId(seance.quete.id);
-				}
+			if(queteActuelle.getSeance(joueur.pseudo) == null) {
+				queteActuelle = null;
 			}
 		}
 		
+		if(queteActuelle == null) {
+			queteActuelle = Quete.lastActiveByJoueur(joueur.pseudo);
+		}
+		
 		return ok(quetes.render(
-			Joueur.find.byId(request().username()),
-			listeQuetes,
+			joueur,
+			listeChapitres,
 			queteActuelle
 		));
 	}

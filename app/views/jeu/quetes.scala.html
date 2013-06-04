@@ -1,10 +1,11 @@
-@(joueur: Joueur, quetes: List[Quete], quete: Quete)
+@(joueur: Joueur, chapitres: List[Chapitre], quete: Quete)
 
 @main(joueur, "Quêtes - RunPG", "quetes") {
 <div class="game-template">
-	@views.html.quetes.list(quetes, quete)
+	@views.html.quetes.list(joueur, chapitres, quete)
 
 	<div class="content quete">
+		@if(quete != null) {
 		<h1>@quete.titre</h1>
 
 		<p class="alert alert-warn">
@@ -48,6 +49,10 @@
 
 		@if(quete.getSeance(joueur.pseudo).etat == Seance.Etat.EN_COURS) {
 		<p class="alert"><a href="@routes.Jeu.seance(quete.id)" title="Veuillez vous connecter avec votre téléphone pour l'accomplir">Accomplir cette quête <i class="icon i_link"></i></a> (uniquement sur smartphone)</p>
+		}
+
+		} else {
+		La quête recherchée n'existe pas
 		}
 	</div>
 </div>
