@@ -41,7 +41,7 @@ public class LoginTest extends WithApplication {
 	@Test
 	public void notAuthenticated() {
 		Result result = callAction(
-			controllers.routes.ref.Application.classement(),
+			controllers.routes.ref.Admin.index(),
 			fakeRequest()
 		);
 		assertEquals(303, status(result));

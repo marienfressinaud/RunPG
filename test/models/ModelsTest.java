@@ -17,7 +17,7 @@ public class ModelsTest extends WithApplication {
 	}
 	
 	@Test
-	public void createAndRetrieveJoueur() {
+	public void retrieveJoueur() {
 		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
 		assertNotNull(Julien);
 		assertEquals("Julien", Julien.pseudo);
@@ -35,36 +35,19 @@ public class ModelsTest extends WithApplication {
 		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
 		Julien.augmenterScore(100);
 		
-		assertEquals(110, Julien.score.intValue());
+		assertEquals(100, Julien.score.intValue());
 	}
 
 	@Test
-	public void createAndRetrieveChapitre() {
-		new Chapitre(1, "Prologue").save();
+	public void retrieveChapitre() {
 		Chapitre chapitre = Chapitre.find.where().eq("numero", 1).findUnique();
 		assertNotNull(chapitre);
-		assertEquals("Prologue", chapitre.nom);
+		assertEquals("Enfance", chapitre.nom);
 	}
 
 	@Test
-	public void createAndRetrieveQuete() {
-		new Chapitre(1, "Prologue").save();
-		
-		Quete quete = new Quete(
-			"Re-Sauver le monde",
-			"Vous devez sauver le monde une nouvelle fois !!",
-			"Vous avez encore sauvé le monde", 21, 60
-		);
-		quete = Quete.create(quete, null, 1);
-		
-		Quete quete2 = new Quete(
-			"Sauver le monde",
-			"Vous devez sauver le monde !!",
-			"Vous avez sauvé le monde", 42, 120
-		);
-		quete2 = Quete.create(quete2, quete.id, 1);
-		
-		Quete premiere = Quete.find.where().eq("id", 2).findUnique();
+	public void retrieveQuete() {
+		Quete premiere = Quete.find.where().eq("id", 1).findUnique();
 		Quete suivante = Quete.find.where().eq("id", premiere.suivante.id).findUnique();
 		Chapitre chapitre = Chapitre.find.where()
 		                                 .eq("numero", premiere.chapitre.numero)
@@ -73,54 +56,28 @@ public class ModelsTest extends WithApplication {
 		assertNotNull(premiere);
 		assertNotNull(suivante);
 		assertNotNull(chapitre);
-		assertNull(suivante.suivante);
-		assertEquals("Sauver le monde", premiere.titre);
-		assertEquals("Re-Sauver le monde", suivante.titre);
-		assertEquals("Prologue", chapitre.nom);
+		assertEquals("Les poules", premiere.titre);
+		assertEquals("Le maniement de la fuite", suivante.titre);
+		assertEquals("Enfance", chapitre.nom);
 	}
 	
 	@Test
 	public void findQuetesByChapitre() {
-		new Chapitre(1, "Prologue").save();
-		
-		Quete quete = new Quete(
-			"Re-Sauver le monde",
-			"Vous devez sauver le monde une nouvelle fois !!",
-			"Vous avez encore sauvé le monde", 21, 60
-		);
-		Quete.create(quete, null, 1);
-		
-		Quete quete2 = new Quete(
-			"Sauver le monde",
-			"Vous devez sauver le monde !!",
-			"Vous avez sauvé le monde", 42, 120
-		);
-		Quete.create(quete2, quete.id, 1);
-		
 		List<Quete> quetes = Quete.listByChapitre(1);
-		assertEquals(2, quetes.size());
-		assertEquals("Re-Sauver le monde", quetes.get(0).titre);
+		assertEquals(1, quetes.size());
+		assertEquals("Les poules", quetes.get(0).titre);
 	}
 	
 	@Test
-	public void createAndRetrieveEtatQuete() {
-		new Chapitre(1, "Prologue").save();
+	public void retrieveSeance() {
+		Quete premiere = Quete.find.where().eq("id", 1).findUnique();
+		Joueur marien = Joueur.find.where().eq("pseudo", "Marien").findUnique();
 		
-		Quete quete = new Quete(
-			"Sauver le monde",
-			"Vous devez sauver le monde !!",
-			"Vous avez sauvé le monde", 8, 60
-		);
-		quete = Quete.create(quete, null, 1);
-
-		Joueur Julien = Joueur.find.where().eq("pseudo", "Julien").findUnique();
+		Seance s = premiere.getSeance(marien.pseudo);
 		
-		new Seance(9, 60, Etat.TERMINEE, Julien, quete).save();
-		Seance etat = Seance.find.where().eq("id", 1).findUnique();
-		
-		assertNotNull(etat);
-		assertEquals(9, (int)etat.distance);
-		assertEquals(Etat.TERMINEE, etat.etat);
-		assertEquals("Julien", etat.joueur.pseudo);
+		assertNotNull(s);
+		assertEquals(4, (int)s.distance);
+		assertEquals(Etat.TERMINEE, s.etat);
+		assertEquals("Marien", s.joueur.pseudo);
 	}
 }
