@@ -76,13 +76,11 @@ Règle de gain de points (score) :
 ## Améliorations possibles
 
 1. Après des tests, il n'est pas possible d'envoyer un parcours faisant environ 30 mn et plus (correspondant à environ 30 * 60 = 1800 points GPS). La supposition est que HTTP ne permet pas d'envoyer une en-tête assez grande pour tous ces points GPS.
-
 On pourrait corriger ce problème en envoyant régulièrement (tous les 200 points GPS par exemple) les données au serveur. Néanmoins, Internet n'étant pas forcément disponible tout le long du parcours, on ne peut pas se contenter de ça. On peut ainsi mettre les points GPS sur le stockage du téléphone à l'aide de la technologie Local Storage (HTML5) et les synchroniser quand Internet est accessible.
 
 2. Les différents états d'une quête doivent permettre plus de souplesse entre le passage d'une quête à une autre. Les possibilités ne sont pas réellement utilisées ici. On pourrait par exemple, au moment de passer une quête en EN_COURS, verrouiller les objectifs sans que l'expérience ne puisse plus influencer dessus. Avant de valider une quête, on pourrait aussi la refaire autant de fois que l'on veut mais en ne prenant en compte dans l'expérience que la meilleure course.
 
 3. Au début et à la fin d'une quête, j'avais prévu que le message expliquant l'enchaînement des quêtes se fassent dans un écran "spécial" avec séquence de textes sur background illustrant l'histoire. Ce système s'appuyait d'ailleurs sur les différents états des quêtes pour lancer automatiquement la séquence.
-
 Par exemple, la séquence de début d'une quête aurait dû ressembler à ceci en base de données (les triples tirets indique un changement de message dans la séquence) :
 ```
 background: url('img/seq1_1.jpg')
@@ -93,7 +91,8 @@ Ce roi avait aussi une fille très très belle.
 ---
 background: url('img/seq1_3.jpg')
 Tous les hommes du royaume n'avaient d'yeux que pour elle, ce qui embêtait bien le roi.
-``` (etc.)
+(etc.)
+```
 
 4. Les joueurs devraient être capable de pouvoir rentrer en contact entre eux (système de messages privés, amis, etc.) afin de rendre le site plus "sociale". Mais je n'ai pas jugé que c'était une fonctionnalité suffisamment importante pour que je me penche dessus.
 
