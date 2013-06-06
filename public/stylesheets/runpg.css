@@ -155,7 +155,7 @@ body {
 	list-style: none;
 }
 	.media-list .avatar {
-		margin: 5px 0;
+		padding: 5px 0;
 	}
 	.media-list .pseudo {
 		font-size: 120%;

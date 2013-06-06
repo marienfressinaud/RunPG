@@ -21,6 +21,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 
 import views.html.jeu.*;
+import views.html.joueurs.mediaitem;
 
 @Security.Authenticated(Secured.class)
 public class Jeu extends Controller {
@@ -91,6 +92,12 @@ public class Jeu extends Controller {
 	public static Result profil() {
 		return ok(profil.render(
 			Joueur.find.byId(request().username())
+		));
+	}
+
+	public static Result pajax(String pseudo) {
+		return ok(mediaitem.render(
+			Joueur.find.byId(pseudo)
 		));
 	}
 	

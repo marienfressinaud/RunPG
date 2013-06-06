@@ -33,7 +33,7 @@ public class LoginTest extends WithApplication {
 	public void authenticated() {
 		Result result = callAction(
 			controllers.routes.ref.Application.classement(),
-			fakeRequest().withSession("pseudo", "Bob")
+			fakeRequest().withSession("pseudo", "Julien")
 		);
 		assertEquals(200, status(result));
 	}    
@@ -41,10 +41,25 @@ public class LoginTest extends WithApplication {
 	@Test
 	public void notAuthenticated() {
 		Result result = callAction(
-			controllers.routes.ref.Admin.index(),
+			controllers.routes.ref.Jeu.profil(),
 			fakeRequest()
 		);
 		assertEquals(303, status(result));
 		assertEquals("/login", header("Location", result));
+	}
+	
+	@Test
+	public void authAdmin() {
+		Result result = callAction(
+			controllers.routes.ref.Admin.index(),
+			fakeRequest().withSession("pseudo", "Marien")
+		);
+		assertEquals(200, status(result));
+
+		result = callAction(
+			controllers.routes.ref.Admin.index(),
+			fakeRequest().withSession("pseudo", "Julien")
+		);
+		assertEquals(303, status(result));
 	}
 }

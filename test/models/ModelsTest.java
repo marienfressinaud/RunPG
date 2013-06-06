@@ -49,9 +49,7 @@ public class ModelsTest extends WithApplication {
 	public void retrieveQuete() {
 		Quete premiere = Quete.find.where().eq("id", 1).findUnique();
 		Quete suivante = Quete.find.where().eq("id", premiere.suivante.id).findUnique();
-		Chapitre chapitre = Chapitre.find.where()
-		                                 .eq("numero", premiere.chapitre.numero)
-		                                 .findUnique();
+		Chapitre chapitre = Chapitre.find.byId(premiere.chapitre.numero);
 
 		assertNotNull(premiere);
 		assertNotNull(suivante);
