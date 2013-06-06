@@ -102,15 +102,15 @@ Tous les hommes du royaume n'avaient d'yeux que pour elle, ce qui embêtait bien
 
 ## Crédits
 
-Play Framework : http://www.playframework.com/
-Icônes : https://git.gnome.org/browse/gnome-icon-theme-symbolic
-OpenLayers + OpenStreetMap : http://www.openlayers.org/ http://www.openstreetmap.org/
-JQuery : http://jquery.com/
-PrettyPhoto : http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone
-Simulateur FirefoxOS (pour les tests) : https://addons.mozilla.org/en-US/firefox/addon/firefox-os-simulator/
-Des morceaux de codes Javascipt et Java :
-	- Calcul distance entre 2 points GPS (JS) : http://www.clubic.com/forum/programmation/calcul-de-distance-entre-deux-coordonnees-gps-id178494-page1.html
-	- Calcul distance entre 2 points GPS (Java) : http://stackoverflow.com/questions/837872/calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
-	- Différence entre deux dates en JS : http://www.finalclap.com/faq/88-javascript-difference-date
-Logo : http://www.iconshock.com/
-Avatars : http://www.iconshock.com/ et https://opendesktop.org/usermanager/search.php?username=mentalrey
+* Play Framework : http://www.playframework.com/
+* Icônes : https://git.gnome.org/browse/gnome-icon-theme-symbolic
+* OpenLayers + OpenStreetMap : http://www.openlayers.org/ http://www.openstreetmap.org/
+* JQuery : http://jquery.com/
+* PrettyPhoto : http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone
+* Simulateur FirefoxOS (pour les tests) : https://addons.mozilla.org/en-US/firefox/addon/firefox-os-simulator/
+* Des morceaux de codes Javascipt et Java :
+	* Calcul distance entre 2 points GPS (JS) : http://www.clubic.com/forum/programmation/calcul-de-distance-entre-deux-coordonnees-gps-id178494-page1.html
+	* Calcul distance entre 2 points GPS (Java) : http://stackoverflow.com/questions/837872/calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
+	* Différence entre deux dates en JS : http://www.finalclap.com/faq/88-javascript-difference-date
+* Logo : http://www.iconshock.com/
+* Avatars : http://www.iconshock.com/ et https://opendesktop.org/usermanager/search.php?username=mentalrey
