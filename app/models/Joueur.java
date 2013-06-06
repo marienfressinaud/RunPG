@@ -48,6 +48,10 @@ public class Joueur extends Model {
 	
 	public int getProgression() {
 		int totalQuetes = Quete.find.findList().size();
+		if(totalQuetes == 0) {
+			return 100;
+		}
+
 		int totalTerminee = 0;
 		
 		List<Seance> listeSeances = Seance.find.where().eq("joueur.pseudo", pseudo).findList();

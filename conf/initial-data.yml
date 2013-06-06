@@ -54,7 +54,7 @@ chapitres:
 quetes:
 
     - !!models.Quete
-        id:          4
+        id:          5
         titre:       Un bruit court
         sequenceDeb: La guerre se prépare, mais votre village n'est pas encore prêt. Il vous faut vous rendre à la ville de Marathon pour demander des renforts. Le temps nous est compté, vite !
         sequenceFin: Arrivé essouflé, un homme vous ouvre la porte. Vous lui expliquez la situation et il vous prévient que vous vous êtes trompé de ville. Tout est fichu...
@@ -63,6 +63,20 @@ quetes:
         chapitre:
             !!models.Chapitre
                 numero : 4
+
+    - !!models.Quete
+        id:          4
+        titre:       La quête du Graal
+        sequenceDeb: Vous avez appris que le Graal se trouverait à trentes de kilomètres de là ou vous vous trouvez actuellement. Rattrapez Perceval avant qu'il ne s'en empare et qu'il ne finisse dans des circonstances inextricables (c'est pas faux)
+        sequenceFin: Vous avez retrouvé Perceval mais pas le Graal, dommage.
+        objDistance: 30
+        objDuree:    120
+        suivante:
+            !!models.Quete
+                id : 5
+        chapitre:
+            !!models.Chapitre
+                numero : 3
 
     - !!models.Quete
         id:          3
@@ -175,6 +189,28 @@ seances:
                 id : 2
 
     - !!models.Seance
+        distance:       30
+        duree:          120
+        etat:           VALIDEE
+        joueur:
+            !!models.Joueur
+                pseudo: Pat
+        quete:
+            !!models.Quete
+                id : 3
+
+    - !!models.Seance
+        distance:       42
+        duree:          180
+        etat:           VALIDEE
+        joueur:
+            !!models.Joueur
+                pseudo: Pat
+        quete:
+            !!models.Quete
+                id : 4
+
+    - !!models.Seance
         distance:       0
         duree:          0
         etat:           NOUVELLE
@@ -183,4 +219,4 @@ seances:
                 pseudo: Pat
         quete:
             !!models.Quete
-                id : 3
+                id : 5

@@ -16,7 +16,7 @@ Il s'agit d'un projet web pour l'Ensimag, un certain nombre de contraintes sont 
 * Une partie du site en GWT (souhaitable) : ~NOK (choix assumé, remplacement par affichage JQuery + Ajax du profil utilisateur dans l'administration (?))
 * Version mobile de l'application (optionnel) : OK (tout le site est full responsive design)
 
-## État du projet
+## État du projet : 100% terminé
 
 * Page d'accueil / classement joueurs : OK
 * Inscription utilisateurs : OK
@@ -34,7 +34,7 @@ Il s'agit d'un projet web pour l'Ensimag, un certain nombre de contraintes sont 
 * Flux RSS évolution joueurs : OK
 * FlUX RSS classement joueurs : OK
 * Tests : OK
-* Création d'une vraie histoire pour le jeu : NOK
+* Création de quêtes : OK
 
 ## Fonctionnement du jeu
 
